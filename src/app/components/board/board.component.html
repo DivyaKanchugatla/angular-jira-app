@@ -1,0 +1,36 @@
+<div class="container-fluid pt-2">
+    <div class="row pt-5">
+        <div class="col-12">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <h4>All Tickets</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <div class="d-flex">
+                <div><input type="text" placeholder="Search Here" class="form-control ng-pristine ng-valid ng-touched">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row pt-1">
+        <div class="col" *ngFor="let status of status">
+            <div class="card card-bg">
+                <div class="card-header border-0 py-1"> {{ status }} </div>
+                <div class=" ticket-bg" *ngFor="let ticket of ticketsArray">
+                    <div draggable="true" class="card-Body-Hover m-1 rounded-1 task" *ngIf="ticket.status === status"
+                        style="display: flex;justify-content: space-between;">
+                        <div class="my-1 fw-bold">{{ ticket.summary }}</div>
+                        <div style="display: flex;flex-direction: column;">
+                            <p>Assigned To</p>
+                            <div class="fw-bold">{{ ticket.assignedTo }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

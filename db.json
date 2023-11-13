@@ -1,0 +1,68 @@
+{
+    "loginCreds": [
+      {
+        "userId": 1,
+        "emailId": "divya@gmail.com",
+        "fullName": "Divya Kanchugatla",
+        "password": "@1234" 
+      },
+      {
+        "userId": 2,
+        "emailId": "ganesh@gmail.com",
+        "fullName": "Ganesh Bade",
+        "password": "@5678"
+      }     
+    ],    
+    "routes": {
+      "/projectList": "/projectList"
+    },
+    "projectList": [
+          {
+            "projectId": 1,
+            "projectName": "Bakkt",
+            "shortName": "Testing",
+            "createdDate": "2023-09-01T10:56:50.237"
+          },
+          {
+            "projectId": 2,
+            "projectName": "HPE",
+            "shortName": "Service",
+            "createdDate": "2023-09-01T10:56:50.237"
+          },
+          {
+            "projectId": 3,
+            "projectName": "Nutanix",
+            "shortName": "meesho",
+            "createdDate": "2023-09-05T05:29:07.607"
+          },
+          {
+            "projectId": 4,
+            "projectName": "Cantalope",
+            "shortName": "Taxi",
+            "createdDate": "2023-09-06T14:20:36.467"
+          },
+          {
+            "projectId": 5,
+            "projectName": "SBT",
+            "shortName": "jira-app",
+            "createdDate": "2023-09-06T15:13:00.727"
+          }      
+        ],
+    "users":[
+          {
+            "userId":1,
+            "fullName":"Divya Kanchugatla"
+          },
+          {
+            "userId":2,
+            "fullName":"Ganesh Bade"
+          },
+          {
+            "userId":3,
+            "fullName":"Shivansh Kanchani"
+          }
+        ]
+    }
+      
+  
+  

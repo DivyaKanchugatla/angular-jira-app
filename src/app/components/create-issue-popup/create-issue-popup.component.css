@@ -1,0 +1,28 @@
+.popup-container{
+    padding: 30px; 
+    width: 800px; 
+    height: 400px;
+}
+.create-issue-title-container{
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+}
+.required-field-title{
+    padding-left: 22px;
+}
+.buttons-container{
+    display: flex; 
+    align-items: flex-end; 
+    justify-content: flex-end; 
+    padding: 10px;
+}
+.cancel-button{
+    margin-right: 12px; 
+    padding: 5px; 
+    width: 75px
+}
+.create-button{
+    padding: 5px; 
+    width: 75px
+}
