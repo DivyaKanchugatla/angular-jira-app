@@ -1,4 +1,3 @@
-// ticket.service.ts
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -6,14 +5,19 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TicketsService {
-  allTicketsArray: any[] = [];
+  private allTicketsArray: any[] = [];
   private projectTicketsArraySource = new BehaviorSubject<any[]>([]);
   projectTicketsArray$: Observable<any[]> = this.projectTicketsArraySource.asObservable();
 
-  constructor() {}
+  constructor() {
+    const storedData = localStorage.getItem('allTicketsArray');
+    this.allTicketsArray = storedData ? JSON.parse(storedData) : [];
+    this.projectTicketsArraySource.next([...this.allTicketsArray]);
+  }
 
   handleTickets(ticket: any) {
     this.allTicketsArray.push(ticket);
+    this.updateLocalStorage();
     this.projectBasedTickets(); 
   }
 
@@ -23,5 +27,9 @@ export class TicketsService {
     } else {
       this.projectTicketsArraySource.next([...this.allTicketsArray]);
     }
+  }
+
+  private updateLocalStorage() {
+    localStorage.setItem('allTicketsArray', JSON.stringify(this.allTicketsArray));
   }
 }
