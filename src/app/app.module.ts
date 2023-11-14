@@ -9,7 +9,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
-import { CreateIssuePopupComponent } from './components/create-issue-popup/create-issue-popup.component';
 import { MatCardModule } from '@angular/material/card';
 import { StoreModule } from '@ngrx/store';
 import { LoginComponent } from './components/login/login.component';
@@ -25,7 +24,6 @@ import { UsersComponent } from './components/users/users.component';
 @NgModule({
   declarations: [
     AppComponent,
-    CreateIssuePopupComponent,
     LoginComponent,
     BoardComponent,
     LayoutComponent,
