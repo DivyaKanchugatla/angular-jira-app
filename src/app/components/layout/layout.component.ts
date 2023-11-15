@@ -71,9 +71,12 @@ export class LayoutComponent {
     this.ticketsService.projectBasedTickets(obj);
    }
  
-  onTicketCreate(){
+   onTicketCreate() {
     const newTicketObj = { ...this.ticketObj };
-    this.ticketsService.handleTickets(newTicketObj)  
-  }
-  
+    
+    // Increment ticketId by 1
+    newTicketObj.ticketId++;
+
+    this.ticketsService.handleTickets(newTicketObj);
+}
 }

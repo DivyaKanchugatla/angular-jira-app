@@ -1,129 +1,231 @@
-.breadcrumb-Hover:hover {
-    color: darkgrey;
-    text-decoration: underline;
-}
-
-.search-Border {
-    height: 40px;
-}
-
-.space-board-icon-hover:hover {
-    background-color: lightgrey;
-}
-
-.group-By-Font {
-    font-size: 13px;
-}
-
-.ct {
-    background-color: blue;
-    border-radius: 17px;
-    width: 34px;
-    padding: 5px;
-}
-
-.icon-CT {
-    background-color: lightgray;
-    border-radius: 17px;
-    width: 34px;
-    padding: 5px;
-}
-
-.user {
-    background-color: gray;
-    padding: 6px;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.user-selected {
-    padding: 6px;
-    cursor: pointer;
-    border-radius: 50%;
+/* .header-content {
+    position:absolute;
+    bottom:30px;
+    left:0;
+    text-align: center;
+    width: 100%;
 }
 
 
-.card-Height {
+
+.column {
+    flex: 1;
+    min-width: 300px;
+    margin: 0 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+}
+.column-header{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.task{
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+ */
+ /* .root {
+    display: flex;
+    flex-direction: column;
     height: 100%;
 }
 
-.card-Body-Hover {
-    background-color: #ffff;
-    padding: 6px;
-    border: 1px solid lightgray;
-    border-bottom: 1px solid gray;
+.app-name {
+    font-size: 28px;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
 }
 
-#draggable {
-    width: 100px;
-    height: 50px;
-    background-color: #f5f5f5;
-    padding: 10px;
-    cursor: move;
-}
-
-#droppable {
-    width: 200px;
-    height: 200px;
-    background-color: #ccc;
-    margin-top: 20px;
-}
-
-#board {
-    display: flex;
-    gap: 20px;
-}
-
-.grabbable {
-    cursor: move;
-    /* fallback if grab cursor is unsupported */
-    cursor: grab;
-    cursor: -moz-grab;
-    cursor: -webkit-grab;
-}
-
-/* (Optional) Apply a "closed-hand" cursor during drag operation. */
-.grabbable:active {
-    cursor: grabbing;
-    cursor: -moz-grabbing;
-    cursor: -webkit-grabbing;
-}
-
-.column {
-    flex: 1 0 auto;
-    border: 1px solid #ccc;
-    padding: 10px;
-}
-
-.task {
-    background-color: #f5f5f5;
-    padding: 5px;
-    margin-bottom: 10px !important;
-    cursor: move;
-}
-
-.card-Body-Hover:hover {
-    background-color: rgba(238, 244, 244, 0.973);
-}
-
-.create-Hover:hover {
-    background-color: rgba(238, 244, 244, 0.973);
-    color: rgb(54, 53, 53);
-}
-
-.space-font {
-    font-size: 13px;
-}
-
-.create-Font {
-    font-size: 15px;
+.has-gradient-text {
+    background: -webkit-linear-gradient(#13f7f4, #2af598);
+    
+    -webkit-text-fill-color: transparent;
 }
 
 .board {
-    position: absolute;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-width: 0;
+    min-height: 0;
 }
 
-.card-body {
-    background-color: #ffff !important;
-    padding: 5px;
+.board-bar {
+    background: rgba(gray, 0.5);
+    padding: 8px 15px;
 }
+
+.board-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.board-wrapper {
+    display: flex;
+    flex-grow: 1;
+    overflow-x: auto;
+}
+
+.board-columns {
+    display: flex;
+    flex-grow: 1;
+}
+
+.board-column {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-basis: 0;
+    min-width: 300px;
+    margin: 50px;
+    padding: 25px;
+    border-radius: 4px;
+    background: rgba(white, 0.5);
+}
+
+.board-column:not(:first-child) {
+    margin-left: 0;
+}
+
+.column-title {
+    font-size: 20px;
+    font-weight: 800;
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.tasks-container {
+    flex-grow: 1;
+    overflow-y: auto; 
+}
+
+.task {
+    display: flex;
+    padding: 15px 12px;
+    background: white;
+    border-bottom: solid 1px #ddd;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.05),
+                0 3px 14px 2px rgba(0, 0, 0, 0.05);
+}
+
+.cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+                0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.tasks-container.cdk-drop-list-dragging .task:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.kanban-board {
+    display: flex;
+   justify-content: space-between;
+   padding: 20px;
+}
+div.cdkDropListGroup {
+    display: flex;
+  }
+  
+  div.example-container {
+    flex: 1;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  div.example-list {
+    min-height: 60px; 
+    border: 1px solid #ccc;
+    padding: 10px;
+    flex: 1;
+  }
+  
+  div.example-box {
+    background-color: #f0f0f0;
+    margin: 0 0 10px;
+    padding: 10px;
+    cursor: move;
+  }
+   */
+   .kanban {
+    display: flex;
+    justify-content: space-around;
+  }
+  .example-container {
+    width: 360px;
+    max-width: 100%;
+    margin: 0 25px 25px 0;
+    display: inline-block;
+    vertical-align: top;
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .example-list {
+    border: solid 1px #ccc;
+    min-height: 60px;
+    background: white;
+  
+    overflow: hidden;
+    display: block;
+  }
+  
+  .example-box {
+    padding: 20px 10px;
+    border-bottom: solid 1px #ccc;
+    color: rgba(0, 0, 0, 0.87);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    cursor: move;
+    background: white;
+    font-size: 14px;
+  }
+  
+  .cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+      0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  }
+  
+  .cdk-drag-placeholder {
+    opacity: 0;
+  }
+  
+  .cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  
+  .example-box:last-child {
+    border: none;
+  }
+  
+  .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }

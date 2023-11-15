@@ -9,7 +9,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
-import { CreateIssuePopupComponent } from './components/create-issue-popup/create-issue-popup.component';
 import { MatCardModule } from '@angular/material/card';
 import { StoreModule } from '@ngrx/store';
 import { LoginComponent } from './components/login/login.component';
@@ -19,13 +18,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LayoutComponent } from './components/layout/layout.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { UsersComponent } from './components/users/users.component';
+import { EffectsModule } from '@ngrx/effects';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreateIssuePopupComponent,
     LoginComponent,
     BoardComponent,
     LayoutComponent,
@@ -35,6 +35,7 @@ import { UsersComponent } from './components/users/users.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    DragDropModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
@@ -45,7 +46,8 @@ import { UsersComponent } from './components/users/users.component';
     MatInputModule,  
     MatCardModule,
     StoreModule.forRoot({}, {}),
-    NgbModule  
+    NgbModule,
+    EffectsModule.forRoot([])  
   ],
   providers: [],
   bootstrap: [AppComponent]
