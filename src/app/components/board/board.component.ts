@@ -3,9 +3,6 @@ import { TicketsService } from 'src/app/services/tickets.service';
 
 import {
   CdkDragDrop,
-  CdkDrag,
-  CdkDropList,
-  CdkDropListGroup,
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
@@ -17,36 +14,22 @@ import {
 })
 export class BoardComponent implements OnInit {
   todo :any[]=[]
-  Progress:any[] = [];
+  progress:any[] = [];
   done:any[] = [];
 
   ticketsArray: any[] = [];
   status:string[]=['To Do','In Progress','Done'];
-  
-  doneList:any[]=[];
-  todoList:any[]=[];
-  inProgressList:any[]=[];
  
-
   constructor(private ticketService: TicketsService) { 
   }
  
   ngOnInit() {
     this.ticketService.projectTicketsArray$.subscribe((tickets) => {
       this.ticketsArray = tickets;
-
-      this.doneList = tickets.filter(m=>m.status==="Done")
-      console.log("doneList",this.doneList)
-      this.done = this.doneList
-
-      this.todoList = tickets.filter(m=>m.status==="To Do")
-      console.log("todoList",this.todoList)
-      this.todo=this.todoList
-
-      this.inProgressList = tickets.filter(m=>m.status === "In Progress")
-      console.log("inProgressList",this.inProgressList)
-      this.Progress=this.inProgressList
-      console.log("ngOnInit", this.ticketsArray);
+      this.done = tickets.filter(m=>m.status==="Done")
+      this.todo = tickets.filter(m=>m.status==="To Do")
+      this.progress = tickets.filter(m=>m.status === "In Progress")
+      console.log("ticketsArray", this.ticketsArray);
     });
   }
 //  filterTickets(status:string){

@@ -14,15 +14,12 @@ export class LayoutComponent {
   status:string[]=['To Do','In Progress','Done'];
 
   ticketObj: any = {
-    "ticketId":0,
     "projectName":"",
     "createdDate": new Date(),
     "summary":"",
     "status":"",
-    "description":"",  
     "assignedTo":0,
     "createdBy":0,
-    "projectId":0
   }
   constructor(config: NgbModalConfig, private modalService: NgbModal,private http:HttpClient,private ticketsService:TicketsService) {
 		config.backdrop = 'static';
@@ -73,10 +70,7 @@ export class LayoutComponent {
  
    onTicketCreate() {
     const newTicketObj = { ...this.ticketObj };
-    
-    // Increment ticketId by 1
     newTicketObj.ticketId++;
-
     this.ticketsService.handleTickets(newTicketObj);
 }
 }
