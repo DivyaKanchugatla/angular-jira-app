@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TicketsService } from 'src/app/services/tickets.service';
 
 @Component({
@@ -12,16 +12,18 @@ export class LayoutComponent {
   projectList:any[]=[];
   userList:any[]=[];
   status:string[]=['To Do','In Progress','Done'];
-
+  selectedItem: any;
+ 
   ticketObj: any = {
     "projectName":"",
+    "ticketType":"",
     "createdDate": new Date(),
     "summary":"",
     "status":"",
     "assignedTo":0,
     "createdBy":0,
   }
-  constructor(config: NgbModalConfig, private modalService: NgbModal,private http:HttpClient,private ticketsService:TicketsService) {
+  constructor(config: NgbModalConfig,private http:HttpClient,private ticketsService:TicketsService) {
 		config.backdrop = 'static';
 		config.keyboard = false;
     const loginData = localStorage.getItem('jiraLoginDetails');
@@ -31,13 +33,16 @@ export class LayoutComponent {
       this.ticketObj.createdBy = parseData.fullName;
       console.log(this.ticketObj.createdBy)
     }
+   
 	}
 
 	open(content:any) {
-		this.modalService.open(content);
+		this.ticketsService.open(content)
+    
 	}
 
   ngOnInit(){
+    
     const storedProjectList = localStorage.getItem('projectList');
     if (storedProjectList) {
       this.projectList = JSON.parse(storedProjectList);
@@ -45,6 +50,7 @@ export class LayoutComponent {
       this.getAllProjects();
     }
       this.getAllUsers();
+    
   }
 
   getAllProjects(){
@@ -52,6 +58,7 @@ export class LayoutComponent {
       .subscribe((res: any) => {
         console.log("res",res)
         this.projectList=res
+       
         }
       );
   }
@@ -63,14 +70,14 @@ export class LayoutComponent {
       }
     );
   }
-
+  
    setProject(obj: any) {
     this.ticketsService.projectBasedTickets(obj);
    }
  
    onTicketCreate() {
-    const newTicketObj = { ...this.ticketObj };
-    newTicketObj.ticketId++;
+    const newTicketObj = { ...this.ticketObj, ticketId: Math.floor(Math.random() * 1000000) + 1 };
     this.ticketsService.handleTickets(newTicketObj);
-}
+    
+   }
 }

@@ -3,32 +3,36 @@
     <h2>All Tickets</h2>
   </div>
 </div>
-
 <div class="kanban" cdkDropListGroup>
   <div cdkDropListGroup>
-    <div class="example-container">
-      <h2>To Do ({{todo.length}})</h2>
-      <div cdkDropList [cdkDropListData]="todo" class="example-list" (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of todo" cdkDrag>
+    <div class="example-container" *ngFor="let status of status">
+      <h2>{{ status }} ({{getTasksByStatus(status).length}})</h2>
+      <div
+        cdkDropList
+        [cdkDropListData]="getTasksByStatus(status)"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div
+          class="example-box"
+          *ngFor="let item of getTasksByStatus(status)"
+          cdkDrag
+        >
           {{ item.projectName }}
-        </div>
-      </div>
-    </div>
-    <div class="example-container">
-      <h2>In-Progress ({{progress.length}})</h2>
-      <div cdkDropList [cdkDropListData]="progress" class="example-list" (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of progress" cdkDrag>
-          {{ item.projectName }}
-        </div>
-      </div>
-    </div>
-    <div class="example-container">
-      <h2>Done ({{done.length}})</h2>
-      <div cdkDropList [cdkDropListData]="done" class="example-list" (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of done" cdkDrag>
-          {{ item.projectName }}
+          <div style="display: flex;">
+            <div *ngIf="item.ticketType === 'Story'; else elseBlock">
+              <span class="text-danger">* </span>
+            </div>
+            <ng-template #elseBlock>             
+                <mat-icon class="text-danger">bookmark</mat-icon>
+            </ng-template>
+            <div data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="editTicket(item)"><mat-icon>edit</mat-icon></div>
+            <mat-icon (click)="deleteTicket(item)">delete</mat-icon>
+          </div>         
         </div>
       </div>
     </div>
   </div>
 </div>
+
+  
