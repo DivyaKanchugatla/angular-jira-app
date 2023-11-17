@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TicketsService } from 'src/app/services/tickets.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-layout',
@@ -12,7 +13,7 @@ export class LayoutComponent {
   projectList:any[]=[];
   userList:any[]=[];
   status:string[]=['To Do','In Progress','Done'];
-  selectedItem: any;
+  
  
   ticketObj: any = {
     "projectName":"",
@@ -23,49 +24,40 @@ export class LayoutComponent {
     "assignedTo":0,
     "createdBy":0,
   }
-  constructor(config: NgbModalConfig,private http:HttpClient,private ticketsService:TicketsService) {
+  constructor(config: NgbModalConfig,private http:HttpClient,private ticketsService:TicketsService,private modalService:NgbModal) {
 		config.backdrop = 'static';
 		config.keyboard = false;
     const loginData = localStorage.getItem('jiraLoginDetails');
     if(loginData != null) {
       const parseData = JSON.parse(loginData);
-      console.log(parseData)
       this.ticketObj.createdBy = parseData.fullName;
-      console.log(this.ticketObj.createdBy)
     }
    
 	}
 
-	open(content:any) {
-		this.ticketsService.open(content)
-    
-	}
-
+  open(content:any){
+    this.modalService.open(content);
+  }
   ngOnInit(){
-    
     const storedProjectList = localStorage.getItem('projectList');
     if (storedProjectList) {
       this.projectList = JSON.parse(storedProjectList);
     } else {
       this.getAllProjects();
     }
-      this.getAllUsers();
-    
+      this.getAllUsers();      
   }
 
   getAllProjects(){
     this.http.get("http://localhost:3000/projectList")
       .subscribe((res: any) => {
-        console.log("res",res)
         this.projectList=res
-       
         }
       );
   }
   getAllUsers(){
     this.http.get("http://localhost:3000/users")
     .subscribe((res: any) => {
-      console.log("res",res)
       this.userList=res
       }
     );
@@ -78,6 +70,13 @@ export class LayoutComponent {
    onTicketCreate() {
     const newTicketObj = { ...this.ticketObj, ticketId: Math.floor(Math.random() * 1000000) + 1 };
     this.ticketsService.handleTickets(newTicketObj);
-    
-   }
+  }
+  
+
+
+
+
+
+
+
 }

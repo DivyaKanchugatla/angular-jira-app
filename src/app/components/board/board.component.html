@@ -26,7 +26,8 @@
             <ng-template #elseBlock>             
                 <mat-icon class="text-danger">bookmark</mat-icon>
             </ng-template>
-            <div data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="editTicket(item)"><mat-icon>edit</mat-icon></div>
+             <mat-icon (click)="editTicket(item)">edit</mat-icon>
+           
             <mat-icon (click)="deleteTicket(item)">delete</mat-icon>
           </div>         
         </div>

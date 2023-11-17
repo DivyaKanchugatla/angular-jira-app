@@ -1,5 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { TicketsService } from 'src/app/services/tickets.service';
+import { Router } from '@angular/router';
 import {
   CdkDragDrop,
   moveItemInArray,
@@ -21,11 +22,10 @@ export class BoardComponent implements OnInit {
   ticketsArray: any[] = [];
   status:string[]=['To Do','In Progress','Done'];
  
-  constructor(private ticketService: TicketsService) { 
+  constructor(private ticketService: TicketsService,  public router: Router,) { 
   }
   open(content:any){
-    this.ticketService.open(content)
-  
+    this.ticketService.open(content);
   }
  
   ngOnInit() {
@@ -34,7 +34,6 @@ export class BoardComponent implements OnInit {
       this.done = this.ticketsArray.filter((m) => m.status === 'Done');
       this.todo = this.ticketsArray.filter((m) => m.status === 'To Do');
       this.progress = this.ticketsArray.filter((m) => m.status === 'In Progress');
-      console.log('ticketsArray', this.ticketsArray);
     });
   }
 
@@ -81,8 +80,6 @@ getTasksByStatus(status: string): any[] {
       }
     }
     editTicket(item:any){
-      console.log("editItem",item)
-      this.ticketService.editTicket(item)
-     
+      this.router.navigate(['/ticket'], { queryParams: { id: item.ticketId } });
     }
 }

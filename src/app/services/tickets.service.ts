@@ -39,8 +39,13 @@ export class TicketsService {
   updateLocalStorage(tickets:any) {
     localStorage.setItem('allTicketsArray', JSON.stringify(tickets));
   }
-  editTicket(ticket:any){
-    this.selectedItem = {...ticket}
+ private selectedItemSource = new BehaviorSubject<any>(null);
+  selectedItem$: Observable<any> = this.selectedItemSource.asObservable();
+
+  // ... (existing code)
+
+  editTicket(ticket: any) {
+    this.selectedItem = { ...ticket };
+    this.selectedItemSource.next(this.selectedItem);
   }
- 
 }

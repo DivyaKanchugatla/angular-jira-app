@@ -20,6 +20,7 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { UsersComponent } from './components/users/users.component';
 import { EffectsModule } from '@ngrx/effects';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { EditTicketComponent } from './components/edit-ticket/edit-ticket.component';
 
 
 
@@ -30,7 +31,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     BoardComponent,
     LayoutComponent,
     ProjectsComponent,
-    UsersComponent
+    UsersComponent,
+    EditTicketComponent
   ],
   imports: [
     BrowserModule,

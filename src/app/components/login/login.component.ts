@@ -24,7 +24,6 @@ export class LoginComponent {
       .subscribe((res: any) => {
         if (res.length > 0) {
           const userData = res[0];
-          console.log("loginuser",userData)
           localStorage.setItem('jiraLoginDetails', JSON.stringify(userData));
           this.router.navigateByUrl('/board');
         } else {

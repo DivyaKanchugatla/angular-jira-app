@@ -5,6 +5,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { BoardComponent } from './components/board/board.component';
 import { UsersComponent } from './components/users/users.component';
 import { ProjectsComponent } from './components/projects/projects.component';
+import { EditTicketComponent } from './components/edit-ticket/edit-ticket.component';
 
 const routes: Routes = [
   {
@@ -31,7 +32,11 @@ const routes: Routes = [
       {
         path: 'board',
         component: BoardComponent
-      }
+      },
+      {
+        path: 'ticket',
+        component: EditTicketComponent
+      },
 
     ]
   }

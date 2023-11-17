@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="fs-5">Edit selected Ticket</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <div class="project-model">
+                <label for="projectName">Project <span class="text-danger">*</span></label>
+                <input type="text" id="projectName" class="form-control mb-3" [(ngModel)]="selectedTicket.projectName">
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-4">
+            <label for="sta">Status <span><i class="fa fa-circle-info"></i></span></label>
+            <input type="text" id="sta" class="mb-1 form-control" [(ngModel)]="selectedTicket.status">
+        </div>
+        <div class="col-8 mb-3">
+            <label for="summary">Summary <span class="text-danger">*</span></label>
+            <input type="text" id="summary" [(ngModel)]="selectedTicket.summary" name="summary" class="form-control border inputbg border-2">
+        </div>
+        <div class="col-12 mb-3">
+            <label for="ticketType">Ticket Type <span class="text-danger">*</span></label>
+            <input type="text" id="ticketType" class="mb-1 form-control" [(ngModel)]="selectedTicket.ticketType">
+        </div>
+        <div class="col-6 mb-3">
+            <label for="assignedTo">Assignee</label>
+            <input type="text" id="assignedTo" class="mb-1 form-control" [(ngModel)]="selectedTicket.assignedTo">
+        </div>
+        <div class="col-6 mb-3">
+            <label for="createdBy">Reporter</label>
+            <input type="text" id="createdBy" [(ngModel)]="selectedTicket.createdBy" class="mb-1 form-control">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div>
+                <input type="checkbox" name="createAnotherIssue" id="createAnotherIssue"><span>Create another issue</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <button type="button" class="btn btn-primary" (click)="saveTicket()">Save</button>
+        </div>
+    </div>
+</div>
