@@ -12,6 +12,7 @@ export class EditTicketComponent {
   ticketsArray:any[]=[];
   id:any;
   selectedTicket:any;
+  status:string[]=['To Do','In Progress','Done'];
  
 constructor(private ticketsService:TicketsService, private route: ActivatedRoute,private router:Router){
   
