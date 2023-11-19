@@ -18,7 +18,7 @@
           *ngFor="let item of getTasksByStatus(status)"
           cdkDrag
         >
-          {{ item.projectName }}
+          {{ item.summary }}
           <div style="display: flex;">
             <div *ngIf="item.ticketType === 'Story'; else elseBlock">
               <span class="text-danger">* </span>
