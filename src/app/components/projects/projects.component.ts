@@ -38,6 +38,5 @@ export class ProjectsComponent {
     }
     this.projectList.push(newObj);
     localStorage.setItem('projectList', JSON.stringify(this.projectList));
-    console.log('Updated Project List:', this.projectList);
   }
 }

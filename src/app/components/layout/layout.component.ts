@@ -14,7 +14,6 @@ export class LayoutComponent {
   userList:any[]=[];
   status:string[]=['To Do','In Progress','Done'];
   
- 
   ticketObj: any = {
     "projectName":"",
     "ticketType":"",
@@ -38,6 +37,7 @@ export class LayoutComponent {
   open(content:any){
     this.modalService.open(content);
   }
+
   ngOnInit(){
     const storedProjectList = localStorage.getItem('projectList');
     if (storedProjectList) {
@@ -71,12 +71,4 @@ export class LayoutComponent {
     const newTicketObj = { ...this.ticketObj, ticketId: Math.floor(Math.random() * 1000000) + 1 };
     this.ticketsService.handleTickets(newTicketObj);
   }
-  
-
-
-
-
-
-
-
 }

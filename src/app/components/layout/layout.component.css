@@ -8,11 +8,6 @@
 .nav-link, .navbar-brand {
     color: #fff!important;
 }
-
-
-
-
-
 .kanban {
     display: flex;
     justify-content: space-around;

@@ -24,9 +24,6 @@ export class BoardComponent implements OnInit {
  
   constructor(private ticketService: TicketsService,  public router: Router,) { 
   }
-  open(content:any){
-    this.ticketService.open(content);
-  }
  
   ngOnInit() {
     this.ticketService.projectTicketsArray$.subscribe((tickets) => {

@@ -19,7 +19,6 @@ export class LoginComponent {
 
   onLogin() {
     const jsonServerUrl = 'http://localhost:3000/loginCreds'; 
-
     this.http.get(`${jsonServerUrl}?emailId=${this.loginObj.emailId}&password=${this.loginObj.password}`)
       .subscribe((res: any) => {
         if (res.length > 0) {

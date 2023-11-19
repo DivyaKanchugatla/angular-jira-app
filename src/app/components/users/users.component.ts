@@ -40,7 +40,6 @@ constructor(private http: HttpClient) {}
     }
     this.userList.push(newObj);
     localStorage.setItem('userList', JSON.stringify(this.userList));
-    console.log('Updated user List:', this.userList)  
   }
 
 }

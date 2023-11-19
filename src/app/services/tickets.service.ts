@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +10,7 @@ export class TicketsService {
   private projectTicketsArraySource = new BehaviorSubject<any[]>([]);
   projectTicketsArray$: Observable<any[]> = this.projectTicketsArraySource.asObservable();
  
-  selectedItem:any;
-
-  constructor(private modalService: NgbModal) {
+  constructor() {
     const storedData = localStorage.getItem('allTicketsArray');
     this.allTicketsArray = storedData ? JSON.parse(storedData) : [];
     this.projectTicketsArraySource.next([...this.allTicketsArray]);
@@ -31,21 +29,9 @@ export class TicketsService {
       this.projectTicketsArraySource.next([...this.allTicketsArray]);
     }
   }
-  open(content:any){
-    this.modalService.open(content);
-   
-  }
-
+  
   updateLocalStorage(tickets:any) {
     localStorage.setItem('allTicketsArray', JSON.stringify(tickets));
   }
- private selectedItemSource = new BehaviorSubject<any>(null);
-  selectedItem$: Observable<any> = this.selectedItemSource.asObservable();
 
-  // ... (existing code)
-
-  editTicket(ticket: any) {
-    this.selectedItem = { ...ticket };
-    this.selectedItemSource.next(this.selectedItem);
-  }
 }
