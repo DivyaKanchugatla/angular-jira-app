@@ -16,9 +16,7 @@ export class EditTicketComponent {
   status:string[]=['To Do','In Progress','Done'];
   projectList:any[]=[];
  
-constructor(private ticketsService:TicketsService, private route: ActivatedRoute,private router:Router,private http:HttpClient){
-  
-}
+constructor(private ticketsService:TicketsService, private route: ActivatedRoute,private router:Router,private http:HttpClient){}
 
 ngOnInit() {
   this.ticketsService.projectTicketsArray$.subscribe((tickets) => {

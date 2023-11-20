@@ -37,7 +37,6 @@ const routes: Routes = [
         path: 'ticket',
         component: EditTicketComponent
       },
-
     ]
   }
 ];
