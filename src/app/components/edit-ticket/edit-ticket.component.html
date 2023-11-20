@@ -8,7 +8,11 @@
         <div class="col-4">
             <div class="project-model">
                 <label for="projectName">Project <span class="text-danger">*</span></label>
-                <input type="text" id="projectName" class="form-control mb-3" [(ngModel)]="selectedTicket.projectName">
+                <select name="projectName" id="projectName" class="form-select mb-3"
+                    [(ngModel)]="selectedTicket.projectName">
+                    <option *ngFor="let project of projectList" [value]="project.projectName">
+                        {{project.projectName}}</option>
+                </select>
             </div>
         </div>
     </div>
@@ -27,7 +31,8 @@
         </div>
         <div class="col-12 mb-3">
             <label for="Ticket Type">Ticket Type <span class="text-danger">*</span></label>
-            <select name="Ticket Type" class="mb-1 form-select" id="Ticket Type" [(ngModel)]="selectedTicket.ticketType">
+            <select name="Ticket Type" class="mb-1 form-select" id="Ticket Type"
+                [(ngModel)]="selectedTicket.ticketType">
                 <option>Story</option>
                 <option>Defect</option>
             </select>
