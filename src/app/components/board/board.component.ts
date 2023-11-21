@@ -1,11 +1,14 @@
 import { Component,OnInit } from '@angular/core';
 import { TicketsService } from 'src/app/services/tickets.service';
 import { Router } from '@angular/router';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+
 import {
   CdkDragDrop,
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-board',
@@ -14,26 +17,45 @@ import {
 })
 
 export class BoardComponent implements OnInit {
+  myControl = new FormControl('');
   todo :any[]=[]
   progress:any[] = [];
   done:any[] = [];
+  auto: any;
+  projectList:any[]=[];
 
-
+  filterOptions:any[]=[];
   ticketsArray: any[] = [];
   status:string[]=['To Do','In Progress','Done'];
- 
-  constructor(private ticketService: TicketsService,  public router: Router,) { 
+  formGroup:any;
+  constructor(private ticketService: TicketsService,  public router: Router,private fb:FormBuilder) { 
   }
  
   ngOnInit() {
     this.ticketService.projectTicketsArray$.subscribe((tickets) => {
       this.ticketsArray = tickets;
+      this.filterOptions = tickets;
       this.done = this.ticketsArray.filter((m) => m.status === 'Done');
       this.todo = this.ticketsArray.filter((m) => m.status === 'To Do');
       this.progress = this.ticketsArray.filter((m) => m.status === 'In Progress');
     });
+   this.initForm();
   }
-
+  initForm(){
+    this.formGroup = this.fb.group({
+      'employee': ['']
+    })
+    this.formGroup.get('employee').valueChanges.subscribe((response:any) => {
+      console.log(response)
+      this.filterData(response)
+    })
+  }
+  filterData(entered:any){
+   this.filterOptions = this.ticketsArray.filter(item =>{
+     return item.toLowerCase().indexOf(entered.toLowerCase()) > -1
+  })
+  }
+ 
 getTasksByStatus(status: string): any[] {
   switch (status) {
     case 'To Do':

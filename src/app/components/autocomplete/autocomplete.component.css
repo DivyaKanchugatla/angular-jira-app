@@ -1,0 +1,18 @@
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .custom-autocomplete {
+    z-index: 1000 !important; /* Adjust the z-index value as needed */
+  }
+  .custom-autocomplete-panel {
+ /* Use fixed positioning */
+    z-index: 1000 !important; /* Adjust the z-index value as needed */
+  }
+  

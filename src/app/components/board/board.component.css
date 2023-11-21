@@ -92,3 +92,7 @@
   margin: 0 4px;
   cursor:pointer;
 }
+.custom-autocomplete {
+  z-index: 1000 !important; /* Adjust the z-index value as needed */
+  
+}

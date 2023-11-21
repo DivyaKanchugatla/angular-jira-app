@@ -1,0 +1,31 @@
+<!-- autocomplete.component.html -->
+
+<!-- <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Number</mat-label>
+      <input type="text"
+             matInput
+             [formControl]="myControl"
+             [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" class="custom-autocomplete">
+        <div *ngFor="let option of filteredOptions" class="custom-autocomplete-panel">
+          <mat-option [value]="option">{{option.projectName}}</mat-option>
+        </div>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+   -->
+
+
+   <form class="example-form">
+    <input type="text"
+           placeholder="Search for a street"
+           [formControl]="control"
+           [matAutocomplete]="auto"
+           class="example-input">
+    <mat-autocomplete #auto="matAutocomplete" >
+        <div *ngFor="let option of filteredOptions" class="custom-autocomplete-panel">
+            <mat-option [value]="option">{{option.projectName}}</mat-option>
+          </div>
+    </mat-autocomplete>
+  </form>

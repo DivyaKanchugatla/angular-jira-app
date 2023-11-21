@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon'; 
@@ -21,7 +21,8 @@ import { UsersComponent } from './components/users/users.component';
 import { EffectsModule } from '@ngrx/effects';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { EditTicketComponent } from './components/edit-ticket/edit-ticket.component';
-
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { EditTicketComponent } from './components/edit-ticket/edit-ticket.compon
     LayoutComponent,
     ProjectsComponent,
     UsersComponent,
-    EditTicketComponent
+    EditTicketComponent,
+    AutocompleteComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,9 @@ import { EditTicketComponent } from './components/edit-ticket/edit-ticket.compon
     MatCardModule,
     StoreModule.forRoot({}, {}),
     NgbModule,
-    EffectsModule.forRoot([])  
+    EffectsModule.forRoot([]),
+    MatAutocompleteModule,
+    ReactiveFormsModule  
   ],
   providers: [],
   bootstrap: [AppComponent]

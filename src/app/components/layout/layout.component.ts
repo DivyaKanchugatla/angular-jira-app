@@ -10,9 +10,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent {
+ 
   projectList:any[]=[];
   userList:any[]=[];
   status:string[]=['To Do','In Progress','Done'];
+  
   
   ticketObj: any = {
     "projectName":"",

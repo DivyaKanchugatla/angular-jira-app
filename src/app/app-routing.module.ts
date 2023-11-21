@@ -6,6 +6,7 @@ import { BoardComponent } from './components/board/board.component';
 import { UsersComponent } from './components/users/users.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { EditTicketComponent } from './components/edit-ticket/edit-ticket.component';
+import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
         path: 'ticket',
         component: EditTicketComponent
       },
+      {
+        path: 'autocomplete',
+        component: AutocompleteComponent
+      }
     ]
   }
 ];
