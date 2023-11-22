@@ -21,18 +21,19 @@
                     <a class="nav-link active" aria-current="page">
                         <button class="btn bg-primary p-0 px-1  text-white " data-bs-toggle="modal"
                             data-bs-target="#exampleModal">Create</button></a>
-                </li> 
-                  
+                </li>  
+                      
             </ul>
-
-        </div>   
+           
+        </div>
+       
     </div>
-   
+
 </nav>
 <div class="container-fluid pt-5">
     <router-outlet></router-outlet>
 </div>
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
         <div class="modal-content">
             <div class="modal-header d-flex ">
@@ -99,7 +100,8 @@
             <div class="modal-footer">
                 <div style="display: flex;justify-content: flex-end;">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" (click)="onTicketCreate()">Create</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                        (click)="onTicketCreate()">Create</button>
                 </div>
             </div>
         </div>
