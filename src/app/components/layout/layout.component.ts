@@ -10,12 +10,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent {
- 
   projectList:any[]=[];
   userList:any[]=[];
   status:string[]=['To Do','In Progress','Done'];
-  
-  
+   
   ticketObj: any = {
     "projectName":"",
     "ticketType":"",
@@ -33,7 +31,6 @@ export class LayoutComponent {
       const parseData = JSON.parse(loginData);
       this.ticketObj.createdBy = parseData.fullName;
     }
-   
 	}
 
   open(content:any){
@@ -57,6 +54,7 @@ export class LayoutComponent {
         }
       );
   }
+  
   getAllUsers(){
     this.http.get("http://localhost:3000/users")
     .subscribe((res: any) => {

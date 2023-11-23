@@ -23,8 +23,7 @@ ngOnInit() {
     this.ticketsArray = tickets;
   });
   
-
-  this.route.queryParamMap.subscribe(params => {
+this.route.queryParamMap.subscribe(params => {
     this.id = params.get('id') || ''; 
     const filteredTickets = this.ticketsArray.filter(m => m.ticketId == this.id);
     if (filteredTickets.length > 0) {
@@ -34,13 +33,14 @@ ngOnInit() {
     }
   });
 
-  const storedProjectList = localStorage.getItem('projectList');
+const storedProjectList = localStorage.getItem('projectList');
   if (storedProjectList) {
     this.projectList = JSON.parse(storedProjectList);
   } else {
     this.getAllProjects();
   }
 }
+
 getAllProjects(){
   this.http.get("http://localhost:3000/projectList")
     .subscribe((res: any) => {
@@ -48,6 +48,7 @@ getAllProjects(){
       }
     );
 }
+
 saveTicket() {
     const newTicketArray = this.ticketsArray.map((ticket)=>{
       return ticket.ticketId === this.selectedTicket.ticketId ? this.selectedTicket : ticket
@@ -55,5 +56,4 @@ saveTicket() {
       localStorage.setItem('allTicketsArray', JSON.stringify(newTicketArray));
       this.router.navigate(['/board']);
 }
-
 }
