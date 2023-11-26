@@ -1,16 +1,16 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h1 class="fs-3">Edit selected Ticket</h1>
+            <h1 class="fs-3" i18n="@@editTicket">Edit selected Ticket</h1>
         </div>
     </div>
     <div class="row">
         <div class="col-4">
             <div class="project-model">
-                <label for="projectName">Project <span class="text-danger">*</span></label>
+                <label for="projectName" i18n="@@projectLabel">Project <span class="text-danger">*</span></label>
                 <select name="projectName" id="projectName" class="form-select mb-3"
                     [(ngModel)]="selectedTicket.projectName">
-                    <option *ngFor="let project of projectList" [value]="project.projectName">
+                    <option *ngFor="let project of projectList" [value]="project.projectName" i18n="@@projectOption">
                         {{project.projectName}}</option>
                 </select>
             </div>
@@ -19,36 +19,36 @@
     <hr>
     <div class="row">
         <div class="col-4">
-            <label for="sta">Status <span><i class="fa fa-circle-info"></i></span></label>
+            <label for="sta" i18n="@@statusLabel">Status <span><i class="fa fa-circle-info"></i></span></label>
             <select name="status" id="sta" class="mb-1 form-select" [(ngModel)]="selectedTicket.status">
-                <option *ngFor="let sta of status">{{ sta }}</option>
+                <option *ngFor="let sta of status" i18n="@@statusOption">{{ sta }}</option>
             </select>
         </div>
         <div class="col-8 mb-3">
-            <label for="summary">Summary <span class="text-danger">*</span></label>
+            <label for="summary" i18n="@@summaryLabel">Summary <span class="text-danger">*</span></label>
             <input type="text" id="summary" [(ngModel)]="selectedTicket.summary" name="summary"
                 class="form-control border inputbg border-2">
         </div>
         <div class="col-12 mb-3">
-            <label for="Ticket Type">Ticket Type <span class="text-danger">*</span></label>
+            <label for="Ticket Type" i18n="@@ticketTypeLabel">Ticket Type <span class="text-danger">*</span></label>
             <select name="Ticket Type" class="mb-1 form-select" id="Ticket Type"
                 [(ngModel)]="selectedTicket.ticketType">
-                <option>Story</option>
-                <option>Defect</option>
+                <option i18n="@@storyOption">Story</option>
+                <option i18n="@@defectOption">Defect</option>
             </select>
         </div>
         <div class="col-6 mb-3">
-            <label for="assignedTo">Assignee</label>
+            <label for="assignedTo" i18n="@@assigneeLabel">Assignee</label>
             <input type="text" id="assignedTo" class="mb-1 form-control" [(ngModel)]="selectedTicket.assignedTo">
         </div>
         <div class="col-6 mb-3">
-            <label for="createdBy">Reporter</label>
+            <label for="createdBy" i18n="@@reporterLabel">Reporter</label>
             <input type="text" id="createdBy" [(ngModel)]="selectedTicket.createdBy" class="mb-1 form-control">
         </div>
     </div>
     <div class="row">
         <div class="col-6">
-            <button type="button" class="btn btn-primary" (click)="saveTicket()">Save</button>
+            <button type="button" class="btn btn-primary" (click)="saveTicket()" i18n="@@saveButton">Save</button>
         </div>
     </div>
 </div>

@@ -22,8 +22,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { EditTicketComponent } from './components/edit-ticket/edit-ticket.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
-
 
 @NgModule({
   declarations: [
@@ -33,8 +31,7 @@ import { AutocompleteComponent } from './components/autocomplete/autocomplete.co
     LayoutComponent,
     ProjectsComponent,
     UsersComponent,
-    EditTicketComponent,
-    AutocompleteComponent
+    EditTicketComponent
   ],
   imports: [
     BrowserModule,
