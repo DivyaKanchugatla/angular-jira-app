@@ -11,14 +11,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class LayoutComponent {
   searchInput = '';
-  todo: any[] = [];
-  progress: any[] = [];
-  done: any[] = [];
-
-  projectList: any[] = [];
   ticketsArray: any[] = [];
+  projectList: any[] = [];
   status: string[] = ['To Do', 'In Progress', 'Done'];
-
   userList: any[] = [];
 
   ticketObj: any = {
@@ -50,6 +45,10 @@ export class LayoutComponent {
   }
 
   ngOnInit() {
+    this.ticketsService.projectTicketsArray$.subscribe((tickets) => {
+      this.ticketsArray = tickets;
+      
+    });
     const storedProjectList = localStorage.getItem('projectList');
     if (storedProjectList) {
       this.projectList = JSON.parse(storedProjectList);
@@ -60,32 +59,12 @@ export class LayoutComponent {
   }
 
   filterTickets() {
-    // console.log(this.searchInput);
-    this.filterBySearchInput(this.searchInput);
+    console.log(this.searchInput);
+    this.ticketsService.filterTickets(this.searchInput);
   }
+  
 
-  filterBySearchInput(value: any) {
-    if (value) {
-      const filteredArray = this.ticketsArray.filter((item) =>
-        item.projectName.toLowerCase().includes(value.toLowerCase())
-      );
-
-      this.done = filteredArray.filter((m) => m.status === 'Done');
-      this.todo = filteredArray.filter((m) => m.status === 'To Do');
-      this.progress = filteredArray.filter((m) => m.status === 'In Progress');
-
-      this.ticketsArray = filteredArray;
-    } else {
-      this.ticketsService.projectTicketsArray$.subscribe((tickets) => {
-        this.ticketsArray = tickets;
-      });
-      this.done = this.ticketsArray.filter((m) => m.status === 'Done');
-      this.todo = this.ticketsArray.filter((m) => m.status === 'To Do');
-      this.progress = this.ticketsArray.filter(
-        (m) => m.status === 'In Progress'
-      );
-    }
-  }
+  
   getAllProjects() {
     this.http.get('http://localhost:3000/projectList').subscribe((res: any) => {
       this.projectList = res;
