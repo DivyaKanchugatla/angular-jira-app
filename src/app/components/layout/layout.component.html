@@ -30,9 +30,8 @@
             <form class="form m-1">
               <div class="custom-dropdown" style="position: relative; width: 400px">
                 <input class="form-control icon" placeholder="Type to search..." name="searchInput"
-                  [(ngModel)]="searchInput" (input)="filterTickets()" />
-
-                <div class="dropdown-options" *ngIf="searchInput.length > 0">
+                  [(ngModel)]="searchInput" (input)="filterTickets()" autocomplete="off"/>
+                <div class="dropdown-options" *ngIf="searchInput.trim().length > 0">
                   <div *ngFor="let ticket of ticketsArray" class="option">
                     {{ ticket.projectName }}
                   </div>
@@ -41,6 +40,7 @@
             </form>
           </div>
         </div>
+        
       </ul>
     </div>
   </div>
