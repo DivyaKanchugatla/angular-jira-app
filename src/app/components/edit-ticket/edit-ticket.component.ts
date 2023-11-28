@@ -2,23 +2,8 @@ import { Component,OnInit } from '@angular/core';
 import { TicketsService } from 'src/app/services/tickets.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-
-export interface Ticket {
-  assignedTo: string;
-  createdBy: string;
-  createdDate: string;
-  projectName: string;
-  ticketType: string;
-  ticketId: number; 
-  summary: string;
-  status: string; 
-}
-export interface Project {
-  projectId: number;
-  projectName: string;
-  shortName: string;
-  createdDate: string;
-}
+import { Ticket } from 'src/app/models/ticket.model';
+import { Project } from 'src/app/models/project.model';
 
 @Component({
   selector: 'app-edit-ticket',

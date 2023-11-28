@@ -1,12 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component,OnInit } from '@angular/core';
+import { Project } from 'src/app/models/project.model';
 
-export interface Project {
-  projectId: number;
-  projectName: string;
-  shortName: string;
-  createdDate: string;
-}
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',

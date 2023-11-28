@@ -1,22 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Ticket } from '../models/ticket.model';
+import { Project } from '../models/project.model';
 
-export interface Ticket {
-  assignedTo: string;
-  createdBy: string;
-  createdDate: string;
-  projectName: string;
-  ticketType: string;
-  ticketId: number; 
-  summary: string;
-  status: string; 
-}
-export interface Project {
-  projectId: number;
-  projectName: string;
-  shortName: string;
-  createdDate: string;
-}
 @Injectable({
   providedIn: 'root'
 })

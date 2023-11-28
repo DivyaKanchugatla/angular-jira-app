@@ -1,28 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { TicketsService } from 'src/app/services/tickets.service';
 import { Router } from '@angular/router';
+import { Ticket } from 'src/app/models/ticket.model';
+import { Project } from 'src/app/models/project.model';
 import {
   CdkDragDrop,
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 
-export interface Ticket {
-  assignedTo: string;
-  createdBy: string;
-  createdDate: string;
-  projectName: string;
-  ticketType: string;
-  ticketId: number; 
-  summary: string;
-  status: string; 
-}
-export interface Project {
-  projectId: number;
-  projectName: string;
-  shortName: string;
-  createdDate: string;
-}
+
+
 
 @Component({
   selector: 'app-board',

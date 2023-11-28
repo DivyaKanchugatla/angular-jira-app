@@ -1,12 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { LoginUser } from 'src/app/models/loginUser.model';
 
-export interface LoginUser{
-  userId: number;
-  emailId: string;
-  fullName: string;
-  password: string;
-}
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',

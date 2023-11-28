@@ -3,27 +3,10 @@ import { Component,OnInit} from '@angular/core';
 import { NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TicketsService } from 'src/app/services/tickets.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Ticket } from 'src/app/models/ticket.model';
+import { Project } from 'src/app/models/project.model';
+import { User } from 'src/app/models/user.model';
 
-export interface Ticket {
-  assignedTo: string;
-  createdBy: string;
-  createdDate: string;
-  projectName: string;
-  ticketType: string;
-  ticketId: number; 
-  summary: string;
-  status: string; 
-}
-export interface Project {
-  projectId: number;
-  projectName: string;
-  shortName: string;
-  createdDate: string;
-}
-export interface User {
-  userId: number;
-  fullName: string;
-}
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
