@@ -9,7 +9,7 @@
     <div class="example-container" *ngFor="let status of status">
       <h2>{{ status }} ({{getTasksByStatus(status).length}})</h2>
       <div cdkDropList [cdkDropListData]="getTasksByStatus(status)" class="example-list"
-        (cdkDropListDropped)="drop($event)">
+      (cdkDropListDropped)="drop($event)">
         <div class="example-box" *ngFor="let item of getTasksByStatus(status)" cdkDrag>
           <div class="centered-container">
             <div>

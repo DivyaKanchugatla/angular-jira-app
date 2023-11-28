@@ -13,10 +13,11 @@
             Projects
           </a>
           <ul class="dropdown-menu">
-            <li *ngFor="let project of projectList" (click)="setProject(project)">
+            <li *ngFor="let project of projectList" (click)="setProject(project)" (keyup.enter)="setProject(project)" tabindex="0">
               <a class="dropdown-item">{{ project.projectName }}</a>
             </li>
           </ul>
+                 
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page">

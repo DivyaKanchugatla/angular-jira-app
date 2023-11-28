@@ -7,6 +7,23 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 
+export interface Ticket {
+  assignedTo: string;
+  createdBy: string;
+  createdDate: string;
+  projectName: string;
+  ticketType: string;
+  ticketId: number; 
+  summary: string;
+  status: string; 
+}
+export interface Project {
+  projectId: number;
+  projectName: string;
+  shortName: string;
+  createdDate: string;
+}
+
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -15,11 +32,11 @@ import {
 
 export class BoardComponent implements OnInit {
   searchInput = "";
-  todo: any[] = []
-  progress: any[] = [];
-  done: any[] = [];
-  projectList: any[] = [];
-  ticketsArray: any[] = [];
+  todo: Ticket[] = []
+  progress: Ticket[] = [];
+  done: Ticket[] = [];
+  projectList: Project[] = [];
+  ticketsArray: Ticket[] = [];
   status: string[] = ['To Do', 'In Progress', 'Done'];
 
   constructor(private ticketService: TicketsService, public router: Router) {
@@ -28,34 +45,13 @@ export class BoardComponent implements OnInit {
   ngOnInit() {
     this.ticketService.projectTicketsArray$.subscribe((tickets) => {
       this.ticketsArray = tickets;
-      console.log(this.ticketsArray)
       this.done = this.ticketsArray.filter((m) => m.status === 'Done');
       this.todo = this.ticketsArray.filter((m) => m.status === 'To Do');
       this.progress = this.ticketsArray.filter((m) => m.status === 'In Progress');
     });
   }
 
- 
- 
-  // filterBySearchInput(value: any) {
-  //   if (value) {
-  //     const filteredArray = this.ticketsArray.filter(
-  //       (item) => item.projectName.toLowerCase().includes(value.toLowerCase())
-  //     );
-  //     this.done = filteredArray.filter((m) => m.status === 'Done');
-  //     this.todo = filteredArray.filter((m) => m.status === 'To Do');
-  //     this.progress = filteredArray.filter((m) => m.status === 'In Progress');
-  //     this.ticketsArray = filteredArray;
-  //   } else {
-  //     this.ticketService.projectTicketsArray$.subscribe((tickets) => {
-  //       this.ticketsArray = tickets;})
-  //     this.done = this.ticketsArray.filter((m) => m.status === 'Done');
-  //     this.todo = this.ticketsArray.filter((m) => m.status === 'To Do');
-  //     this.progress = this.ticketsArray.filter((m) => m.status === 'In Progress');           
-  //   } 
-  // }
-  
-  getTasksByStatus(status: string): any[] {
+  getTasksByStatus(status: string): Ticket[] {
     switch (status) {
       case 'To Do':
         return this.todo;
@@ -68,7 +64,7 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  deleteTicket(ticket: any) {
+  deleteTicket(ticket: Ticket) {
     if (this.todo.includes(ticket)) {
       this.todo = this.todo.filter((item) => item !== ticket);
     } else if (this.progress.includes(ticket)) {
@@ -80,7 +76,7 @@ export class BoardComponent implements OnInit {
     this.ticketService.updateLocalStorage(this.ticketsArray)
   }
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<Ticket[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
@@ -97,7 +93,7 @@ export class BoardComponent implements OnInit {
       this.ticketService.updateLocalStorage(this.ticketsArray)
     }
   }
-  editTicket(item: any) {
-    this.router.navigate(['/ticket'], { queryParams: { id: item.ticketId } });
+  editTicket(ticket: Ticket) {
+    this.router.navigate(['/ticket'], { queryParams: { id: ticket.ticketId } });
   }
 }

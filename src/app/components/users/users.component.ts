@@ -1,17 +1,23 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+export interface LoginUser{
+  userId: number;
+  emailId: string;
+  fullName: string;
+  password: string;
+}
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
-export class UsersComponent {
-  userList:any[]=[]
-  fullName:string="";
-  password:any="";
-  emailId:any="";
-  userId:any="";
+export class UsersComponent implements OnInit {
+  userList:LoginUser[]=[]
+  fullName = "";
+  password = "";
+  emailId = "";
+  userId = "";
 
 constructor(private http: HttpClient) {}
 
@@ -25,14 +31,14 @@ constructor(private http: HttpClient) {}
   }
 
   getAllUsers() {
-    this.http.get("http://localhost:3000/userList").subscribe((res: any) => {
+    this.http.get<LoginUser[]>("http://localhost:3000/loginCreds").subscribe((res: LoginUser[]) => {
       this.userList = res;
       localStorage.setItem('userList', JSON.stringify(this.userList));
     });
   }
 
   onSave(){
-    const newObj = {
+    const newObj: LoginUser = {
       "userId": this.userList.length + 1,
       "fullName": this.fullName,
       "emailId":this.emailId,

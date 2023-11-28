@@ -2,13 +2,20 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
+export interface LoginUser{
+  userId: number;
+  emailId: string;
+  fullName: string;
+  password: string;
+}
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  loginObj: any = {
+  loginObj: LoginUser = {
     "userId": 0,
     "emailId": "",
     "fullName": "",
@@ -19,8 +26,8 @@ export class LoginComponent {
 
   onLogin() {
     const jsonServerUrl = 'http://localhost:3000/loginCreds'; 
-    this.http.get(`${jsonServerUrl}?emailId=${this.loginObj.emailId}&password=${this.loginObj.password}`)
-      .subscribe((res: any) => {
+    this.http.get<LoginUser[]>(`${jsonServerUrl}?emailId=${this.loginObj.emailId}&password=${this.loginObj.password}`)
+      .subscribe((res: LoginUser[]) => {
         if (res.length > 0) {
           const userData = res[0];
           localStorage.setItem('jiraLoginDetails', JSON.stringify(userData));

@@ -1,29 +1,50 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component,OnInit} from '@angular/core';
 import { NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TicketsService } from 'src/app/services/tickets.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+export interface Ticket {
+  assignedTo: string;
+  createdBy: string;
+  createdDate: string;
+  projectName: string;
+  ticketType: string;
+  ticketId: number; 
+  summary: string;
+  status: string; 
+}
+export interface Project {
+  projectId: number;
+  projectName: string;
+  shortName: string;
+  createdDate: string;
+}
+export interface User {
+  userId: number;
+  fullName: string;
+}
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.css'],
 })
-export class LayoutComponent {
+export class LayoutComponent implements OnInit{
   searchInput = '';
-  ticketsArray: any[] = [];
-  projectList: any[] = [];
+  ticketsArray: Ticket[] = [];
+  projectList: Project[] = [];
   status: string[] = ['To Do', 'In Progress', 'Done'];
-  userList: any[] = [];
+  userList: User[] = [];
 
-  ticketObj: any = {
+  ticketObj: Ticket = {
     projectName: '',
     ticketType: '',
-    createdDate: new Date(),
+    createdDate: "new Date()",
     summary: '',
     status: '',
-    assignedTo: 0,
-    createdBy: 0,
+    assignedTo: "",
+    createdBy: "",
+    ticketId: 0
   };
   constructor(
     config: NgbModalConfig,
@@ -40,7 +61,7 @@ export class LayoutComponent {
     }
   }
 
-  open(content: any) {
+  open(content: string) {
     this.modalService.open(content);
   }
 
@@ -59,25 +80,25 @@ export class LayoutComponent {
   }
 
   filterTickets() {
-    console.log(this.searchInput);
     this.ticketsService.filterTickets(this.searchInput);
   }
   
 
   
   getAllProjects() {
-    this.http.get('http://localhost:3000/projectList').subscribe((res: any) => {
-      this.projectList = res;
-    });
+    this.http.get<Project[]>("http://localhost:3000/projectList")
+      .subscribe((res: Project[]) => {
+        this.projectList = res;
+      });
   }
 
   getAllUsers() {
-    this.http.get('http://localhost:3000/users').subscribe((res: any) => {
+    this.http.get<User[]>('http://localhost:3000/users').subscribe((res: User[]) => {
       this.userList = res;
     });
   }
 
-  setProject(obj: any) {
+  setProject(obj: Project) {
     this.ticketsService.projectBasedTickets(obj);
   }
 

@@ -1,20 +1,36 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { TicketsService } from 'src/app/services/tickets.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
+export interface Ticket {
+  assignedTo: string;
+  createdBy: string;
+  createdDate: string;
+  projectName: string;
+  ticketType: string;
+  ticketId: number; 
+  summary: string;
+  status: string; 
+}
+export interface Project {
+  projectId: number;
+  projectName: string;
+  shortName: string;
+  createdDate: string;
+}
 
 @Component({
   selector: 'app-edit-ticket',
   templateUrl: './edit-ticket.component.html',
   styleUrls: ['./edit-ticket.component.css']
 })
-export class EditTicketComponent {
-  ticketsArray:any[]=[];
-  id:any;
-  selectedTicket:any;
+export class EditTicketComponent implements OnInit {
+  ticketsArray:Ticket[]=[];
+  id!:number;
+  selectedTicket!:Ticket;
   status:string[]=['To Do','In Progress','Done'];
-  projectList:any[]=[];
+  projectList:Project[]=[];
  
 constructor(private ticketsService:TicketsService, private route: ActivatedRoute,private router:Router,private http:HttpClient){}
 
@@ -24,7 +40,7 @@ ngOnInit() {
   });
   
 this.route.queryParamMap.subscribe(params => {
-    this.id = params.get('id') || ''; 
+  this.id = Number(params.get('id')) || 0;
     const filteredTickets = this.ticketsArray.filter(m => m.ticketId == this.id);
     if (filteredTickets.length > 0) {
       this.selectedTicket = filteredTickets[0];
@@ -41,12 +57,11 @@ const storedProjectList = localStorage.getItem('projectList');
   }
 }
 
-getAllProjects(){
-  this.http.get("http://localhost:3000/projectList")
-    .subscribe((res: any) => {
-      this.projectList=res
-      }
-    );
+getAllProjects() {
+  this.http.get<Project[]>("http://localhost:3000/projectList")
+    .subscribe((res: Project[]) => {
+      this.projectList = res;
+    });
 }
 
 saveTicket() {
