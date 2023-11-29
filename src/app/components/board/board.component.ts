@@ -9,9 +9,6 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 
-
-
-
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',

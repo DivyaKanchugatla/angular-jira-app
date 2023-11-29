@@ -1,0 +1,21 @@
+{
+    "Title": "Jira Software",
+    "projects": "Projects",
+    "crtbtn": "Create",
+    "allTickets": "All Tickets",
+    "todo": "Todo",
+    "inprogress": "In Progress",
+    "done": "Done",
+    "createissue": "Create Issue",
+    "project": "Project",
+    "status": "Status",
+    "summary": "Summary",
+    "tickettype": "Ticket Type",
+    "story": "Story",
+    "defect": "Defect",
+    "assignee": "Assignee",
+    "reporter": "Reporter",
+    "cancel": "Cancel",
+    "save":"Save",
+    "editticket": "Edit Selected Ticket"
+  }

@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Ticket } from 'src/app/models/ticket.model';
 import { Project } from 'src/app/models/project.model';
 import { User } from 'src/app/models/user.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-layout',
@@ -33,7 +34,8 @@ export class LayoutComponent implements OnInit{
     config: NgbModalConfig,
     private http: HttpClient,
     private ticketsService: TicketsService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private translateService:TranslateService
   ) {
     config.backdrop = 'static';
     config.keyboard = false;
@@ -60,6 +62,8 @@ export class LayoutComponent implements OnInit{
       this.getAllProjects();
     }
     this.getAllUsers();
+    // Localization code
+    this.lang = localStorage.getItem('lang') || 'en';
   }
 
   filterTickets() {
@@ -92,4 +96,16 @@ export class LayoutComponent implements OnInit{
     };
     this.ticketsService.handleTickets(newTicketObj);
   }
+
+
+  // Localization
+  lang = '';
+changeLang(event: Event): void {
+  console.log("lang type", event);
+  const selectedLang = (event.target as HTMLSelectElement).value;
+  localStorage.setItem('lang', selectedLang);
+  // page Refresh
+  this.translateService.use(selectedLang);
+}
+
 }

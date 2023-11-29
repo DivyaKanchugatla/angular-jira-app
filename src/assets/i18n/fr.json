@@ -1,0 +1,21 @@
+{
+    "Title": "Logiciel Jira",
+    "projects": "Projets",
+    "crtbtn": "Créer",
+    "allTickets": "Tous les Tickets",
+    "todo": "À faire",
+    "inprogress": "En cours",
+    "done": "Terminé",
+    "createissue": "Créer une tâche",
+    "project": "Projet",
+    "status": "Statut",
+    "summary": "Résumé",
+    "tickettype": "Type de ticket",
+    "story": "histoire",
+    "defect": "défaut",
+    "assignee": "Assigné à",
+    "reporter": "Rapporteur",
+    "cancel": "Annuler",
+    "save":"Sauvegarder",
+    "editticket": "Modifier le billet sélectionné"
+  }

@@ -22,7 +22,13 @@ import { EffectsModule } from '@ngrx/effects';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { EditTicketComponent } from './components/edit-ticket/edit-ticket.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
 
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,9 +56,16 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     NgbModule,
     EffectsModule.forRoot([]),
     MatAutocompleteModule,
-    ReactiveFormsModule  
+    ReactiveFormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),  
   ],
-  providers: [],
+  providers: [HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

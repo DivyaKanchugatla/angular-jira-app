@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-white fixed-top mynav pb-0 pt-0">
   <div class="container-fluid">
-    <a class="navbar-brand align-self-baseline" href="#"><i class="fa-solid fa-bars me-3"></i>Jira Software</a>
+    <a class="navbar-brand align-self-baseline" href="#"><i class="fa-solid fa-bars me-3"></i>{{"Title" | translate}}</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
       aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -10,7 +10,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-dark content-hover" href="#" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
-            Projects
+           {{"projects" | translate}}
           </a>
           <ul class="dropdown-menu">
             <li *ngFor="let project of projectList" (click)="setProject(project)" (keyup.enter)="setProject(project)" tabindex="0">
@@ -22,7 +22,7 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page">
             <button class="btn bg-primary p-0 px-1 text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
-              Create
+              {{"crtbtn"|translate}}
             </button></a>
         </li>
 
@@ -43,9 +43,28 @@
         </div>
         
       </ul>
+
+
+
+      <select
+        class="form-select lang-select"
+        (change)="changeLang($event)"
+        name=""
+        id=""
+      >
+        <option [selected]="lang === 'en'" value="en">English</option>
+        <option [selected]="lang === 'fr'" value="fr">French</option>
+        <option [selected]="lang === 'es'" value="es">Spanish</option>
+      </select>
+
+
+
     </div>
   </div>
 </nav>
+
+
+
 <div class="container-fluid pt-5">
   <router-outlet></router-outlet>
 </div>
@@ -54,7 +73,7 @@
     <div class="modal-content">
       <div class="modal-header d-flex">
         <div>
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Create Issue</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">{{"createissue"|translate}}</h1>
         </div>
         <div>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -65,7 +84,7 @@
           <div class="row">
             <div class="col-4">
               <div class="project-model">
-                <label for="projectName">Project <span class="text-danger">*</span></label>
+                <label for="projectName">{{"project"|translate}} <span class="text-danger">*</span></label>
                 <select name="projectName" id="projectName" class="form-select mb-3"
                   [(ngModel)]="ticketObj.projectName">
                   <option *ngFor="let project of projectList" [value]="project.projectName">
@@ -78,26 +97,26 @@
           <hr />
           <div class="row">
             <div class="col-4">
-              <label for="sta">Status <span><i class="fa fa-circle-info"></i></span></label>
+              <label for="sta">{{"status"|translate}} <span><i class="fa fa-circle-info"></i></span></label>
               <select name="status" id="sta" class="mb-1 form-select" [(ngModel)]="ticketObj.status"
                 [value]="ticketObj.status">
                 <option *ngFor="let sta of status">{{ sta }}</option>
               </select>
             </div>
             <div class="col-8 mb-3">
-              <label for="summary">Summary <span class="text-danger">*</span></label>
+              <label for="summary">{{"summary"|translate}} <span class="text-danger">*</span></label>
               <input type="text" id="summary" [(ngModel)]="ticketObj.summary" name="summary"
                 class="form-control border inputbg border-2" />
             </div>
             <div class="col-12 mb-3">
-              <label for="Ticket Type">Ticket Type <span class="text-danger">*</span></label>
+              <label for="Ticket Type">{{"tickettype"|translate}}<span class="text-danger">*</span></label>
               <select name="Ticket Type" class="mb-1 form-select" id="Ticket Type" [(ngModel)]="ticketObj.ticketType">
-                <option>Story</option>
-                <option>Defect</option>
+                <option>{{"story"|translate}}</option>
+                <option>{{"defect"|translate}}</option>
               </select>
             </div>
             <div class="col-6 mb-3">
-              <label for="fname">Assignee</label>
+              <label for="fname">{{"assignee"|translate}}</label>
               <select name="assignedTo" class="mb-1 form-select" id="fname" [(ngModel)]="ticketObj.assignedTo">
                 <option *ngFor="let user of userList">
                   {{ user.fullName }}
@@ -105,7 +124,7 @@
               </select>
             </div>
             <div class="col-6 mb-3">
-              <label for="fullname">Reporter</label>
+              <label for="fullname">{{"reporter"|translate}}</label>
               <select name="createdBy" [(ngModel)]="ticketObj.createdBy" id="fullname" class="mb-1 form-select">
                 <option *ngFor="let user of userList">
                   {{ user.fullName }}
@@ -118,10 +137,10 @@
       <div class="modal-footer">
         <div style="display: flex; justify-content: flex-end">
           <button type="button" class="btn btn-light" data-bs-dismiss="modal">
-            Cancel
+           {{"cancel"|translate}}
           </button>
           <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="onTicketCreate()">
-            Create
+           {{"crtbtn"|translate}}
           </button>
         </div>
       </div>

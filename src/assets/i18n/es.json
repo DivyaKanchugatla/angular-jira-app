@@ -1,0 +1,21 @@
+{
+    "Title": "Software Jira",
+    "projects": "Proyectos",
+    "crtbtn": "Crear",
+    "allTickets": "Todas las entradas",
+    "todo": "Hacer",
+    "inprogress": "En curso",
+    "done": "Hecho",
+    "createissue": "Crear problema",
+    "project": "Proyecto",
+    "status": "Estado",
+    "summary": "Resumen",
+    "tickettype": "Tipo Billete",
+    "story": "Historia",
+    "defect": "defecto",
+    "assignee": "Cesionaria",
+    "reporter": "Reportera",
+    "cancel": "Cancelar",
+    "save":"Ahorrar",
+    "editticket": "Editar ticket seleccionado"
+  }
