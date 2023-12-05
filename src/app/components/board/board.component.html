@@ -13,7 +13,7 @@
         <div class="example-box" *ngFor="let item of getTasksByStatus(status)" cdkDrag>
           <div class="centered-container">
             <div>
-              <h6>{{ item.summary }}</h6>
+              <p>{{ item.summary }}</p>
               <span class="project-name text-center">{{item.projectName}} Project</span>
             </div>
             <div style="display: flex;">

@@ -57,9 +57,11 @@ export class BoardComponent implements OnInit {
     } else if (this.done.includes(ticket)) {
       this.done = this.done.filter((item) => item !== ticket);
     }
-    this.ticketsArray = this.ticketsArray.filter((item) => item !== ticket);
-    this.ticketService.updateLocalStorage(this.ticketsArray)
+    this.ticketsArray = this.ticketsArray.filter((item) => item !== ticket);  
+    this.ticketService.updateLocalStorage(this.ticketsArray);
+    window.location.reload();
   }
+  
 
   drop(event: CdkDragDrop<Ticket[]>) {
     if (event.previousContainer === event.container) {
