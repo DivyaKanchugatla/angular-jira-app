@@ -3,13 +3,16 @@
     <h2>{{"allTickets" | translate}}</h2>
   </div>
 </div>
-
+<div style="margin-left: 200px;margin-bottom: 40px;margin-top: 30px;">
+  <span class="assignee" (click)="filterByAssignee('')">All</span>
+  <span *ngFor="let assignee of assignees" class="assignee" (click)="filterByAssignee(assignee)">{{assignee}}</span>
+</div>
 <div class="kanban" cdkDropListGroup>
   <div cdkDropListGroup>
     <div class="example-container" *ngFor="let status of status">
       <h2>{{ status }} ({{getTasksByStatus(status).length}})</h2>
       <div cdkDropList [cdkDropListData]="getTasksByStatus(status)" class="example-list"
-      (cdkDropListDropped)="drop($event)">
+        (cdkDropListDropped)="drop($event)">
         <div class="example-box" *ngFor="let item of getTasksByStatus(status)" cdkDrag>
           <div class="centered-container">
             <div>
@@ -23,10 +26,41 @@
               <ng-template #elseBlock>
                 <mat-icon class="text-danger">report</mat-icon>
               </ng-template>
-              <mat-icon (click)="editTicket(item)" class="edit-icon">edit</mat-icon>
-              <mat-icon (click)="deleteTicket(item)" class="text-danger" style="cursor: pointer;">delete</mat-icon>
+              <mat-icon class="edit-icon" data-bs-toggle="modal" data-bs-target="#editModal"
+                (click)="setEditItem(item)">edit</mat-icon>
+              <mat-icon class="text-danger" style="cursor: pointer;" mat-raised-button data-bs-toggle="modal"
+                data-bs-target="#deleteModal" (click)="setdeleteItem(item)">delete</mat-icon>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id={{setModal}} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+  style="width:400px;margin-left: 500px;">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header d-flex">
+        <div>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">{{setModal==="editModal"? "Are you sure you want to edit
+            this Ticket" : "Are you sure you want to delete this Ticket"}}</h1>
+        </div>
+        <div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <div style="display: flex; justify-content: flex-end">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+            No
+          </button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="confirmAction()">
+            Yes
+          </button>
         </div>
       </div>
     </div>

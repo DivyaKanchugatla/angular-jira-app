@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component,OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TicketsService } from 'src/app/services/tickets.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -13,7 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.css'],
 })
-export class LayoutComponent implements OnInit{
+export class LayoutComponent implements OnInit {
   searchInput = '';
   ticketsArray: Ticket[] = [];
   projectList: Project[] = [];
@@ -30,12 +30,13 @@ export class LayoutComponent implements OnInit{
     createdBy: "",
     ticketId: 0
   };
+
   constructor(
     config: NgbModalConfig,
     private http: HttpClient,
     private ticketsService: TicketsService,
     private modalService: NgbModal,
-    private translateService:TranslateService
+    private translateService: TranslateService
   ) {
     config.backdrop = 'static';
     config.keyboard = false;
@@ -53,7 +54,7 @@ export class LayoutComponent implements OnInit{
   ngOnInit() {
     this.ticketsService.projectTicketsArray$.subscribe((tickets) => {
       this.ticketsArray = tickets;
-      
+
     });
     const storedProjectList = localStorage.getItem('projectList');
     if (storedProjectList) {
@@ -69,9 +70,7 @@ export class LayoutComponent implements OnInit{
   filterTickets() {
     this.ticketsService.filterTickets(this.searchInput);
   }
-  
 
-  
   getAllProjects() {
     this.http.get<Project[]>("http://localhost:3000/projectList")
       .subscribe((res: Project[]) => {
@@ -97,15 +96,14 @@ export class LayoutComponent implements OnInit{
     this.ticketsService.handleTickets(newTicketObj);
   }
 
-
   // Localization
   lang = '';
-changeLang(event: Event): void {
-  console.log("lang type", event);
-  const selectedLang = (event.target as HTMLSelectElement).value;
-  localStorage.setItem('lang', selectedLang);
-  // page Refresh
-  this.translateService.use(selectedLang);
-}
+  changeLang(event: Event): void {
+    console.log("lang type", event);
+    const selectedLang = (event.target as HTMLSelectElement).value;
+    localStorage.setItem('lang', selectedLang);
+    // page Refresh
+    this.translateService.use(selectedLang);
+  }
 
 }

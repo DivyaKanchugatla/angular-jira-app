@@ -3,11 +3,13 @@ import { TicketsService } from 'src/app/services/tickets.service';
 import { Router } from '@angular/router';
 import { Ticket } from 'src/app/models/ticket.model';
 import { Project } from 'src/app/models/project.model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   CdkDragDrop,
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
+
 
 @Component({
   selector: 'app-board',
@@ -23,13 +25,20 @@ export class BoardComponent implements OnInit {
   projectList: Project[] = [];
   ticketsArray: Ticket[] = [];
   status: string[] = ['To Do', 'In Progress', 'Done'];
+  ticketToDelete!: Ticket;
+  setModal: string = ''
+  assignees: string[] = []
 
-  constructor(private ticketService: TicketsService, public router: Router) {
+  constructor(private ticketService: TicketsService, public router: Router, private modalService: NgbModal,) {
   }
 
   ngOnInit() {
     this.ticketService.projectTicketsArray$.subscribe((tickets) => {
       this.ticketsArray = tickets;
+      this.ticketsArray.map(((each) => {
+        return this.assignees.push(each.assignedTo)
+      }))
+      this.assignees = [...new Set(this.assignees)];
       this.done = this.ticketsArray.filter((m) => m.status === 'Done');
       this.todo = this.ticketsArray.filter((m) => m.status === 'To Do');
       this.progress = this.ticketsArray.filter((m) => m.status === 'In Progress');
@@ -49,19 +58,48 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  deleteTicket(ticket: Ticket) {
-    if (this.todo.includes(ticket)) {
-      this.todo = this.todo.filter((item) => item !== ticket);
-    } else if (this.progress.includes(ticket)) {
-      this.progress = this.progress.filter((item) => item !== ticket);
-    } else if (this.done.includes(ticket)) {
-      this.done = this.done.filter((item) => item !== ticket);
+  filterByAssignee(assignee: string) {
+    this.ticketService.filterTicketsByAssignee(assignee)
+  }
+
+  open(content: string) {
+    this.modalService.open(content);
+  }
+
+  setEditItem(ticket: Ticket) {
+    this.setModal = "editModal"
+    this.ticketToDelete = ticket;
+  }
+
+  setdeleteItem(ticket: Ticket) {
+    this.setModal = "deleteModal"
+    this.ticketToDelete = ticket;
+  }
+
+  confirmAction() {
+    if (this.setModal === "editModal") {
+      this.editTicket();
+    } else {
+      this.deleteTicket();
     }
-    this.ticketsArray = this.ticketsArray.filter((item) => item !== ticket);  
+  }
+
+  deleteTicket() {
+    if (this.todo.includes(this.ticketToDelete)) {
+      this.todo = this.todo.filter((item) => item !== this.ticketToDelete);
+    } else if (this.progress.includes(this.ticketToDelete)) {
+      this.progress = this.progress.filter((item) => item !== this.ticketToDelete);
+    } else if (this.done.includes(this.ticketToDelete)) {
+      this.done = this.done.filter((item) => item !== this.ticketToDelete);
+    }
+    this.ticketsArray = this.ticketsArray.filter((item) => item !== this.ticketToDelete);
     this.ticketService.updateLocalStorage(this.ticketsArray);
     window.location.reload();
   }
-  
+
+  editTicket() {
+    this.router.navigate(['/ticket'], { queryParams: { id: this.ticketToDelete.ticketId } });
+  }
 
   drop(event: CdkDragDrop<Ticket[]>) {
     if (event.previousContainer === event.container) {
@@ -80,7 +118,5 @@ export class BoardComponent implements OnInit {
       this.ticketService.updateLocalStorage(this.ticketsArray)
     }
   }
-  editTicket(ticket: Ticket) {
-    this.router.navigate(['/ticket'], { queryParams: { id: ticket.ticketId } });
-  }
+
 }

@@ -48,7 +48,39 @@
     </div>
     <div class="row">
         <div class="col-6">
-            <button type="button" class="btn btn-primary" (click)="saveTicket()" >{{"save"|translate}}</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#saveModal">{{"save"|translate}}</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="modal fade" id=saveModal tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    style="width:400px;margin-left: 500px;">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header d-flex">
+                <div>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Are you sure you want to save this Ticket</h1>
+                </div>
+                <div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div style="display: flex; justify-content: flex-end">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+                        No
+                    </button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="saveTicket()">
+                        Yes
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

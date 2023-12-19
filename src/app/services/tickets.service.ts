@@ -8,10 +8,10 @@ import { Project } from '../models/project.model';
 })
 export class TicketsService {
   allTicketsArray: Ticket[] = [];
-  searchInput="";
+  searchInput = "";
   projectTicketsArraySource = new BehaviorSubject<Ticket[]>([]);
   projectTicketsArray$: Observable<Ticket[]> = this.projectTicketsArraySource.asObservable();
- 
+
   constructor() {
     const storedData = localStorage.getItem('allTicketsArray');
     this.allTicketsArray = storedData ? JSON.parse(storedData) : [];
@@ -20,9 +20,9 @@ export class TicketsService {
 
   handleTickets(ticket: Ticket) {
     this.allTicketsArray.push(ticket);
-    console.log("allTickets",this.allTicketsArray)
+    console.log("allTickets", this.allTicketsArray)
     this.updateLocalStorage(this.allTicketsArray);
-    this.projectBasedTickets(); 
+    this.projectBasedTickets();
   }
 
   projectBasedTickets(project?: Project) {
@@ -32,8 +32,8 @@ export class TicketsService {
       this.projectTicketsArraySource.next([...this.allTicketsArray]);
     }
   }
-  
-  updateLocalStorage(tickets:Ticket[]) {
+
+  updateLocalStorage(tickets: Ticket[]) {
     localStorage.setItem('allTicketsArray', JSON.stringify(tickets));
   }
   filterTickets(search: string) {
@@ -45,11 +45,22 @@ export class TicketsService {
       this.projectTicketsArraySource.next(filteredTickets);
     }
   }
-  
-   filterTicketsBySearch(): Ticket[] {
+
+  filterTicketsBySearch(): Ticket[] {
     return this.allTicketsArray.filter((ticket) =>
       ticket.projectName.toLowerCase().includes(this.searchInput.toLowerCase())
     );
   }
-  
+
+  filterTicketsByAssignee(assignee: string) {
+    if (assignee === "") {
+      this.projectTicketsArraySource.next([...this.allTicketsArray]);
+    }
+    else {
+      const filteredTickets = this.allTicketsArray.filter((ticket) =>
+        ticket.assignedTo === assignee)
+      this.projectTicketsArraySource.next(filteredTickets);
+    }
+  }
+
 }
