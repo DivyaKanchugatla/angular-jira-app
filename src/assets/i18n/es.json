@@ -17,5 +17,11 @@
     "reporter": "Reportera",
     "cancel": "Cancelar",
     "save":"Ahorrar",
-    "editticket": "Editar ticket seleccionado"
+    "editticket": "Editar ticket seleccionado",
+    "all": "toda",
+    "editConfirmation": "¿Estás seguro de que quieres editar este billete?",
+    "deleteConfirmation": "Estas seguro que quieres borrarlo este Boleto?",
+    "saveConfirmation": "¿Estás segura de que quieres guardar este boleto?",
+    "no":"No",
+    "yes":"Sí"
   }

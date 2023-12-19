@@ -17,5 +17,11 @@
     "reporter": "Rapporteur",
     "cancel": "Annuler",
     "save":"Sauvegarder",
-    "editticket": "Modifier le billet sélectionné"
+    "editticket": "Modifier le billet sélectionné",
+    "all": "toute",
+    "editConfirmation": "Etes-vous sûr de vouloir modifier ce billet?",
+    "deleteConfirmation": "Etes-vous sûr que vous voulez supprimer ce billet?",
+    "saveConfirmation": "Etes-vous sûr de vouloir enregistrer ce ticket?",
+    "no":"Non",
+    "yes":"Oui"
   }
