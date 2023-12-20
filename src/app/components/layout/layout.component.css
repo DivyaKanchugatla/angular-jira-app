@@ -1,18 +1,22 @@
 .mynav {
-  background-color: #0747a6 !important;
-  color: #fff !important;
+  background-color: #0747a6;
+  color: #fff;
 }
+
 .content-hover:hover {
-  background-color: #033681 !important;
+  background-color: #033681;
 }
+
 .nav-link,
 .navbar-brand {
-  color: #fff !important;
+  color: #fff;
 }
+
 .kanban {
   display: flex;
   justify-content: space-around;
 }
+
 .example-container {
   width: 360px;
   max-width: 100%;
@@ -25,9 +29,11 @@
   border-radius: 5px;
   background-color: #f9f9f9;
 }
+
 .example-container h2 {
   font-size: 23px;
 }
+
 .example-list {
   border: solid 1px #ccc;
   min-height: 60px;
@@ -36,6 +42,7 @@
   overflow: hidden;
   display: block;
 }
+
 .example-box {
   padding: 20px 10px;
   border-bottom: solid 1px #ccc;
@@ -49,15 +56,18 @@
   background: white;
   font-size: 14px;
 }
+
 .cdk-drag-preview {
   box-sizing: border-box;
   border-radius: 4px;
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
     0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
+
 .cdk-drag-placeholder {
   opacity: 0;
 }
+
 .cdk-drag-animating {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
@@ -71,7 +81,9 @@
 }
 
 .custom-dropdown {
+
   position: relative;
+  width: 400px
 }
 
 .dropdown-options {
@@ -95,12 +107,16 @@
 
 .icon {
   padding-left: 25px;
-  background: url("https://static.thenounproject.com/png/101791-200.png")
-    no-repeat left;
+  background: url("https://static.thenounproject.com/png/101791-200.png") no-repeat left;
   background-size: 20px;
   background-color: #f2f2f2;
 }
 
-.lang-select{
-  width:108px;
+.lang-select {
+  width: 108px;
+}
+
+.modal-footer-container {
+  display: flex;
+  justify-content: flex-end
 }

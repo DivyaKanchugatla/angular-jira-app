@@ -17,10 +17,10 @@ export class LoginComponent {
     "password": ""
   }
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   onLogin() {
-    const jsonServerUrl = 'http://localhost:3000/loginCreds'; 
+    const jsonServerUrl = 'http://localhost:3000/loginCreds';
     this.http.get<LoginUser[]>(`${jsonServerUrl}?emailId=${this.loginObj.emailId}&password=${this.loginObj.password}`)
       .subscribe((res: LoginUser[]) => {
         if (res.length > 0) {

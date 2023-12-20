@@ -99,7 +99,6 @@ export class LayoutComponent implements OnInit {
   // Localization
   lang = '';
   changeLang(event: Event): void {
-    console.log("lang type", event);
     const selectedLang = (event.target as HTMLSelectElement).value;
     localStorage.setItem('lang', selectedLang);
     // page Refresh

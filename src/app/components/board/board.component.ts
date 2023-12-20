@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Ticket } from 'src/app/models/ticket.model';
 import { Project } from 'src/app/models/project.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import {
   CdkDragDrop,
   moveItemInArray,
@@ -26,7 +27,7 @@ export class BoardComponent implements OnInit {
   ticketsArray: Ticket[] = [];
   status: string[] = ['To Do', 'In Progress', 'Done'];
   ticketToDelete!: Ticket;
-  setModal = ""
+  setModal: string = ""
   assignees: string[] = []
 
   constructor(private ticketService: TicketsService, public router: Router, private modalService: NgbModal,) {
@@ -67,22 +68,22 @@ export class BoardComponent implements OnInit {
   }
 
   setEditItem(ticket: Ticket) {
-    this.setModal = "editModal"
+    // this.setModal = "editModal"
     this.ticketToDelete = ticket;
   }
 
   setdeleteItem(ticket: Ticket) {
-    this.setModal = "deleteModal"
+    // this.setModal = "deleteModal"
     this.ticketToDelete = ticket;
   }
 
-  confirmAction() {
-    if (this.setModal === "editModal") {
-      this.editTicket();
-    } else {
-      this.deleteTicket();
-    }
-  }
+  // confirmAction() {
+  //   if (this.setModal === "editModal") {
+  //     this.editTicket();
+  //   } else {
+  //     this.deleteTicket();
+  //   }
+  // }
 
   deleteTicket() {
     if (this.todo.includes(this.ticketToDelete)) {

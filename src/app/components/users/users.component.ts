@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoginUser } from 'src/app/models/loginUser.model';
 
@@ -8,13 +8,13 @@ import { LoginUser } from 'src/app/models/loginUser.model';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  userList:LoginUser[]=[]
+  userList: LoginUser[] = []
   fullName = "";
   password = "";
   emailId = "";
   userId = "";
 
-constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
     const storedProjectList = localStorage.getItem('userList');
@@ -32,11 +32,11 @@ constructor(private http: HttpClient) {}
     });
   }
 
-  onSave(){
+  onSave() {
     const newObj: LoginUser = {
       "userId": this.userList.length + 1,
       "fullName": this.fullName,
-      "emailId":this.emailId,
+      "emailId": this.emailId,
       "password": this.password
     }
     this.userList.push(newObj);

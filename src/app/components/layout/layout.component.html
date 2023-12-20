@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-white fixed-top mynav pb-0 pt-0">
+<nav class="navbar navbar-expand-lg fixed-top mynav pb-0 pt-0">
   <div class="container-fluid">
     <a class="navbar-brand align-self-baseline" href="#"><i class="fa-solid fa-bars me-3"></i>{{"Title" |
       translate}}</a>
@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-dark">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-dark content-hover" href="#" role="button" data-bs-toggle="dropdown"
+          <a class="nav-link dropdown-toggle content-hover" href="#" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
             {{"projects" | translate}}
           </a>
@@ -31,8 +31,8 @@
         <div class="row">
           <div class="col-md-12 text-center">
             <form class="form m-1">
-              <div class="custom-dropdown" style="position: relative; width: 400px">
-                <input class="form-control icon" placeholder="Type to search..." name="searchInput"
+              <div class="custom-dropdown">
+                <input class="form-control icon" placeholder="{{'searchph' | translate}}" name="searchInput"
                   [(ngModel)]="searchInput" (input)="filterTickets()" autocomplete="off" />
                 <div class="dropdown-options" *ngIf="searchInput.trim().length > 0">
                   <div *ngFor="let ticket of ticketsArray" class="option">
@@ -126,7 +126,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <div style="display: flex; justify-content: flex-end">
+        <div class="modal-footer-container">
           <button type="button" class="btn btn-light" data-bs-dismiss="modal">
             {{"cancel"|translate}}
           </button>

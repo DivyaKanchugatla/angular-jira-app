@@ -3,7 +3,7 @@
     <h2>{{"allTickets" | translate}}</h2>
   </div>
 </div>
-<div style="margin-left: 200px; margin-bottom: 40px; margin-top: 30px;">
+<div class="assignee-container">
   <span class="assignee" (click)="filterByAssignee('')" (keydown.enter)="filterByAssignee('')" tabindex="0">{{"all" |
     translate}}</span>
   <span *ngFor="let assignee of assignees" class="assignee" (click)="filterByAssignee(assignee)"
@@ -19,7 +19,7 @@
           <div class="centered-container">
             <div>
               <p>{{ item.summary }}</p>
-              <span class="project-name text-center">{{item.projectName}} Project</span>
+              <span class="project-name text-center">{{item.projectName}} {{"project" | translate}}</span>
             </div>
             <div style="display: flex;">
               <div *ngIf="item.ticketType === 'Story'; else elseBlock">
@@ -32,7 +32,7 @@
               </ng-template>
               <mat-icon class="edit-icon" data-bs-toggle="modal" data-bs-target="#editModal" (click)="setEditItem(item)"
                 (keydown.enter)="setEditItem(item)" tabindex="0">edit</mat-icon>
-              <mat-icon class="text-danger" style="cursor: pointer;" mat-raised-button data-bs-toggle="modal"
+              <mat-icon class="text-danger delete-icon" mat-raised-button data-bs-toggle="modal"
                 data-bs-target="#deleteModal" (click)="setdeleteItem(item)" (keydown.enter)="setdeleteItem(item)"
                 tabindex="0">delete</mat-icon>
             </div>
@@ -44,14 +44,14 @@
 </div>
 
 
-<div class="modal fade" id={{setModal}} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-  style="width:400px;margin-left: 500px;">
+<div class="modal fade modal-container" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
     <div class="modal-content">
       <div class="modal-header d-flex">
         <div>
           <h1 class="modal-title fs-5" id="exampleModalLabel">
-            {{ setModal === "editModal" ? ("editConfirmation" | translate) : ("deleteConfirmation" | translate) }}
+            {{ "editConfirmation" | translate }}
           </h1>
         </div>
         <div>
@@ -59,12 +59,40 @@
         </div>
       </div>
       <div class="modal-footer">
-        <div style="display: flex; justify-content: flex-end">
+        <div class="modal-footer-container">
           <button type="button" class="btn btn-light" data-bs-dismiss="modal">
-           {{"no"|translate}}
+            {{"no"|translate}}
           </button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="confirmAction()">
-           {{"yes"|translate}}
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="editTicket()">
+            {{"yes"|translate}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade modal-container" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header d-flex">
+        <div>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            {{"deleteConfirmation" | translate}}
+          </h1>
+        </div>
+        <div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="modal-footer-container">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+            {{"no"|translate}}
+          </button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteTicket()">
+            {{"yes"|translate}}
           </button>
         </div>
       </div>

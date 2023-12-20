@@ -3,13 +3,16 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
 }
+
 h1.fs-5 {
     color: #343a40;
 }
+
 .project-model label {
     font-weight: bold;
     color: #007bff;
 }
+
 .form-control {
     width: 100%;
     padding: 10px;
@@ -17,12 +20,15 @@ h1.fs-5 {
     border-radius: 4px;
     transition: border-color 0.2s;
 }
+
 .form-control:focus {
     border-color: #007bff;
 }
+
 input[type="checkbox"] {
     margin-right: 5px;
 }
+
 .btn-primary {
     background-color: #007bff;
     color: #ffffff;
@@ -32,27 +38,43 @@ input[type="checkbox"] {
     cursor: pointer;
     transition: background-color 0.3s;
 }
+
 .btn-primary:hover {
     background-color: #0056b3;
 }
+
 .row {
     margin-bottom: 20px;
 }
+
 .inputbg {
     background-color: #f8f9fa;
     border: 1px solid #ced4da;
 }
+
 label {
     display: block;
     margin-bottom: 5px;
     color: #495057;
 }
-input[type="checkbox"] + span {
+
+input[type="checkbox"]+span {
     color: #495057;
 }
+
 hr {
     border: 0;
     height: 1px;
     background-color: #ced4da;
     margin: 20px 0;
+}
+
+.modal-container {
+    width: 400px;
+    margin-left: 500px;
+}
+
+.modal-footer-container {
+    display: flex;
+    justify-content: flex-end
 }

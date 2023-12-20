@@ -1,12 +1,12 @@
 <div class="main">
     <div class="container-fluid">
         <div class="row" style="padding-left: 20%;padding-top: 10%;">
-            <div class="col-sm-5 authfy-panel-left pt-5 " style="width:300px ; height: 400px;">
+            <div class="col-sm-5 authfy-panel-left pt-5 ">
                 <div class="brand-col">
                     <div class="headline">
                         <div class="brand-logo">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL8NGmW5tC52mIuRqIFcs_5yi6kIlsp-SGeQ&usqp=CAU" style="width: 100%;"
-                                alt="brand-logo">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL8NGmW5tC52mIuRqIFcs_5yi6kIlsp-SGeQ&usqp=CAU"
+                                style="width: 100%;" alt="brand-logo">
                         </div>
                         <p class="pt-2 text-center">a Project Management Tool</p>
                         <div class="row social-buttons pt-2 ps-5 ">
@@ -26,8 +26,7 @@
                             </div>
                             <div class="col-xs-4 col-sm-4 col-md-12 pt-2">
                                 <a class="btn btn-block btn-google" style="background-color: red;">
-                                    <i class="fa-brands fa-google-plus"></i> <span
-                                        class="hidden-xs hidden-sm">Signin
+                                    <i class="fa-brands fa-google-plus"></i> <span class="hidden-xs hidden-sm">Signin
                                         with google</span>
                                 </a>
                             </div>
@@ -35,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-7 authfy-panel-right" style="background-color:white ; width: 535px;">
+            <div class="col-sm-7 authfy-panel-right">
                 <div class="authfy-login">
                     <div class="authfy-panel panel-login text-center active">
                         <div class="authfy-heading pe-4">
@@ -43,18 +42,20 @@
                             <p>Already Have Account? <a class="lnk-toggler" data-panel=".panel-signup">Login In</a>
                             </p>
                         </div>
-                        <div class="row"  >
+                        <div class="row">
                             <div class="col-xs-12 col-sm-12">
-                                <form name="loginForm" class="loginForm" >
+                                <form name="loginForm" class="loginForm">
                                     <div class="form-group">
-                                        <input type="email" [(ngModel)]="loginObj.emailId" class="form-control email my-2" name="emailId" required
-                                            placeholder="Email address" style="width: 80%;">
+                                        <input type="email" [(ngModel)]="loginObj.emailId"
+                                            class="form-control input-width-class email my-2" name="emailId" required
+                                            placeholder="Email address">
                                     </div>
                                     <div class="form-group">
                                         <div class="pwdMask">
                                             <span class="d-flex">
-                                                <input type="text"  [(ngModel)]="loginObj.password" class="form-control password" name="password"
-                                                    placeholder="Password" style="width: 80%;">
+                                                <input type="text" [(ngModel)]="loginObj.password"
+                                                    class="form-control input-width-class password" name="password"
+                                                    placeholder="Password">
                                             </span>
                                         </div>
                                     </div>
@@ -73,8 +74,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <button class="btn btn-lg btn-primary btn-block " (click)="onLogin()" type="button"
-                                            style="width: 80%;">                                            
+                                        <button class="btn btn-lg btn-primary btn-block input-width-class"
+                                            (click)="onLogin()" type="button">
                                             Login with email
                                         </button>
                                     </div>
