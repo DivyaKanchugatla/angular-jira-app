@@ -24,5 +24,10 @@
   "saveConfirmation": "¿Estás segura de que quieres guardar este boleto?",
   "no": "No",
   "yes": "Sí",
-  "searchph": "Escribe para buscar...."
+  "searchph": "Escribe para buscar....",
+  "close": "Cerca",
+  "deleteAriaLabel": "eliminarEtiquetaModal",
+  "editAriaLabel": "editarEtiquetaModal",
+  "saveAriaLabel": "guardarEtiquetaModal",
+  "createAriaLabel": "crearEtiquetaModal"
 }

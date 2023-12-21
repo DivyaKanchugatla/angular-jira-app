@@ -27,7 +27,7 @@ export class BoardComponent implements OnInit {
   ticketsArray: Ticket[] = [];
   status: string[] = ['To Do', 'In Progress', 'Done'];
   ticketToDelete!: Ticket;
-  setModal: string = ""
+  setModal = ""
   assignees: string[] = []
 
   constructor(private ticketService: TicketsService, public router: Router, private modalService: NgbModal,) {

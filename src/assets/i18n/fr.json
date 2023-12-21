@@ -24,5 +24,10 @@
   "saveConfirmation": "Etes-vous sûr de vouloir enregistrer ce ticket?",
   "no": "Non",
   "yes": "Oui",
-  "searchph": "Tapez pour rechercher...."
+  "searchph": "Tapez pour rechercher....",
+  "close": "Fermer",
+  "deleteAriaLabel": "supprimerModalLabel",
+  "editAriaLabel": "modifierModalLabel",
+  "saveAriaLabel": "saveModalLabel",
+  "createAriaLabel": "créerModalLabel"
 }
