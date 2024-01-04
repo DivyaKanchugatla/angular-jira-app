@@ -20,7 +20,6 @@ export class TicketsService {
 
   handleTickets(ticket: Ticket) {
     this.allTicketsArray.push(ticket);
-    console.log("allTickets", this.allTicketsArray)
     this.updateLocalStorage(this.allTicketsArray);
     this.projectBasedTickets();
   }
