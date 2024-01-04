@@ -99,8 +99,34 @@ export class BoardComponent implements OnInit {
   }
 
   editTicket() {
-    this.router.navigate(['/ticket'], { queryParams: { id: this.ticketToDelete.ticketId } });
+    // Find the index of the ticket to be edited
+    const index = this.ticketsArray.findIndex(ticket => ticket === this.ticketToDelete);
+  
+    if (index !== -1) {
+      // Navigate to the edit page
+      this.router.navigate(['/ticket'], { queryParams: { id: this.ticketToDelete.ticketId } });
+  
+      // Update the status of the ticket based on the current list
+      const currentList = this.getContainingList(this.ticketToDelete);
+      this.ticketsArray[index].status = currentList;
+      
+      // Update local storage with the modified ticketsArray
+      this.ticketService.updateLocalStorage(this.ticketsArray);
+    }
   }
+  
+  getContainingList(ticket: Ticket): string {
+    if (this.todo.includes(ticket)) {
+      return 'To Do';
+    } else if (this.progress.includes(ticket)) {
+      return 'In Progress';
+    } else if (this.done.includes(ticket)) {
+      return 'Done';
+    } else {
+      return ''; 
+    }
+  }
+  
 
   drop(event: CdkDragDrop<Ticket[]>) {
     if (event.previousContainer === event.container) {
@@ -110,14 +136,17 @@ export class BoardComponent implements OnInit {
         event.currentIndex
       );
     } else {
+      const movedTicket = event.previousContainer.data[event.previousIndex];
+      movedTicket.status = this.status[event.currentIndex];
+      this.ticketService.updateLocalStorage(this.ticketsArray);
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex
       );
-      this.ticketService.updateLocalStorage(this.ticketsArray)
     }
   }
+  
 
 }
