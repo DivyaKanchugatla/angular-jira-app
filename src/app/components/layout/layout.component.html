@@ -20,6 +20,7 @@
             </li>
           </ul>
         </li>
+
         <!-- Create issue button -->
         <li class="nav-item">
           <a class="nav-link active" aria-current="page">
@@ -43,6 +44,20 @@
             </form>
           </div>
         </div>
+
+
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle content-hover" href="#" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Reports
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" (click)="sprintReports()">Sprint Report</a>
+            </li>
+          </ul>
+        </li>
       </ul>
       <!--section to select different languages -->
       <select class="form-select lang-select" (change)="changeLang($event)" name="" id="">
@@ -88,6 +103,7 @@
             </div>
           </div>
           <hr />
+
           <div class="row">
             <div class="col-4">
               <label for="sta">{{"status"|translate}} <span><i class="fa fa-circle-info"></i></span></label>
@@ -106,6 +122,33 @@
               <select name="Ticket Type" class="mb-1 form-select" id="Ticket Type" [(ngModel)]="ticketObj.ticketType">
                 <option>{{"story"|translate}}</option>
                 <option>{{"defect"|translate}}</option>
+              </select>
+            </div>
+            <div class="col-4 mb-3">
+              <label for="story points">Story Points</label>
+              <select name="story points" class="mb-1 form-select" id="story points" [(ngModel)]="ticketObj.storyPoints"
+                [value]="ticketObj.storyPoints">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+            <div class="col-4 mb-3">
+              <label for="sprint report">Sprint Report</label>
+              <select name="sprint report" id="sprint report" class="mb-1 form-select"
+                [(ngModel)]="ticketObj.sprintReport" [value]="ticketObj.sprintReport">
+                <option *ngFor="let sprint of sprints">{{sprint.name}} - {{sprint.Date}}</option>
+              </select>
+            </div>
+            <div class="col-4 mb-3">
+              <label for="priority">Priority</label>
+              <select name="priority" class="mb-1 form-select" id="priority" [(ngModel)]="ticketObj.priority"
+                [value]="ticketObj.priority">
+                <option>High</option>
+                <option>Medium</option>
+                <option>None</option>
               </select>
             </div>
             <div class="col-6 mb-3">

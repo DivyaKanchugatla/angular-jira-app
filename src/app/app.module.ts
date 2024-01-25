@@ -23,6 +23,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
+import { SprintReportsComponent } from './components/sprint-reports/sprint-reports.component';
+import { MatTableModule } from '@angular/material/table';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -36,7 +38,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     LayoutComponent,
     ProjectsComponent,
     UsersComponent,
-    EditTicketComponent
+    EditTicketComponent,
+    SprintReportsComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +54,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatDialogModule,
     MatInputModule,
     MatCardModule,
+    MatTableModule,
     NgbModule,
     MatAutocompleteModule,
     ReactiveFormsModule,

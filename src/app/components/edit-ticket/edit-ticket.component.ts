@@ -16,7 +16,16 @@ export class EditTicketComponent implements OnInit {
   selectedTicket!: Ticket;
   status: string[] = ['To Do', 'In Progress', 'Done'];
   projectList: Project[] = [];
-
+  sprints = [{
+    name: 'MAR A',
+    Date: "3/11/24"
+  }, {
+    name: 'MAR B',
+    Date: "3/21/24"
+  }, {
+    name: 'MAR C',
+    Date: "3/31/24"
+  }];
   constructor(private ticketsService: TicketsService, private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
   ngOnInit() {

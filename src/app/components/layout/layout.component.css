@@ -38,7 +38,6 @@
   border: solid 1px #ccc;
   min-height: 60px;
   background: white;
-
   overflow: hidden;
   display: block;
 }
@@ -81,7 +80,6 @@
 }
 
 .custom-dropdown {
-
   position: relative;
   width: 400px
 }
@@ -119,4 +117,8 @@
 .modal-footer-container {
   display: flex;
   justify-content: flex-end
+}
+
+.reports {
+  cursor: pointer;
 }

@@ -7,6 +7,7 @@ import { Ticket } from 'src/app/models/ticket.model';
 import { Project } from 'src/app/models/project.model';
 import { User } from 'src/app/models/user.model';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -19,16 +20,28 @@ export class LayoutComponent implements OnInit {
   projectList: Project[] = [];
   status: string[] = ['To Do', 'In Progress', 'Done'];
   userList: User[] = [];
-
+  sprints = [{
+    name: 'MAR A',
+    Date: "3/11/24"
+  }, {
+    name: 'MAR B',
+    Date: "3/21/24"
+  }, {
+    name: 'MAR C',
+    Date: "3/31/24"
+  }];
   ticketObj: Ticket = {
     projectName: '',
     ticketType: '',
-    createdDate: "new Date()",
+    createdDate: new Date(),
     summary: '',
     status: '',
     assignedTo: "",
     createdBy: "",
-    ticketId: 0
+    ticketId: 0,
+    sprintReport: "",
+    storyPoints: 0,
+    priority: ""
   };
 
   constructor(
@@ -36,6 +49,7 @@ export class LayoutComponent implements OnInit {
     private http: HttpClient,
     private ticketsService: TicketsService,
     private modalService: NgbModal,
+    private router: Router,
     private translateService: TranslateService
   ) {
     config.backdrop = 'static';
@@ -104,5 +118,7 @@ export class LayoutComponent implements OnInit {
     // page Refresh
     this.translateService.use(selectedLang);
   }
-
+  sprintReports() {
+    this.router.navigate(['/sprintReports'])
+  }
 }

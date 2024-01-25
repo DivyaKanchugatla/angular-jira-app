@@ -38,6 +38,24 @@
             </select>
         </div>
         <div class="col-6 mb-3">
+            <label for="story points">Story Points</label>
+            <select name="story points" class="mb-1 form-select" id="story points"
+                [(ngModel)]="selectedTicket.storyPoints" [value]="selectedTicket.storyPoints">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
+        <div class="col-6 mb-3">
+            <label for="sprint report">Sprint Report</label>
+            <select name="sprint report" id="sprint report" class="mb-1 form-select"
+                [(ngModel)]="selectedTicket.sprintReport" [value]="selectedTicket.sprintReport">
+                <option *ngFor="let sprint of sprints">{{sprint.name}} - {{sprint.Date}}</option>
+            </select>
+        </div>
+        <div class="col-6 mb-3">
             <label for="assignedTo">{{"assignee"|translate}}</label>
             <input type="text" id="assignedTo" class="mb-1 form-control" [(ngModel)]="selectedTicket.assignedTo">
         </div>

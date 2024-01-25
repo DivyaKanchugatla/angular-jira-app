@@ -6,6 +6,7 @@ import { BoardComponent } from './components/board/board.component';
 import { UsersComponent } from './components/users/users.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { EditTicketComponent } from './components/edit-ticket/edit-ticket.component';
+import { SprintReportsComponent } from './components/sprint-reports/sprint-reports.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'sprintReports',
+    component: SprintReportsComponent
   },
   {
     path: '',
