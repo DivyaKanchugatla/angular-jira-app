@@ -12,7 +12,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class SprintReportsComponent implements OnInit {
   dataSource = new MatTableDataSource<Ticket>([]);
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'status', 'storypoints'];
+  displayedColumns: string[] = ['key', 'summary', 'issuetype', 'priority', 'status', 'storypoints'];
   ticketsArray: Ticket[] = [];
   selectedSprint = "";
 
