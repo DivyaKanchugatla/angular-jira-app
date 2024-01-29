@@ -34,17 +34,13 @@ export class SprintReportsComponent implements OnInit {
   constructor(private ticketService: TicketsService) { }
 
   onChange() {
-    console.log('Selected Sprint:', this.selectedSprint);
     this.filterTickets();
   }
 
   ngOnInit() {
     this.ticketService.projectTicketsArray$.subscribe((tickets) => {
       this.ticketsArray = tickets;
-      console.log('tickets', this.ticketsArray);
-
-
-    });
+         });
   }
 
   filterTickets() {

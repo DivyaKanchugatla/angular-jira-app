@@ -1,11 +1,12 @@
 <div class="container">
+  <h4 class="mb-5">Sprint Report</h4>
   <input list="id-sprint" [(ngModel)]="selectedSprint" (input)="onChange()">
   <datalist id="id-sprint">
     <option *ngFor="let sprint of sprints" [value]="sprint.name + ' - ' + sprint.Date">{{sprint.name}} - {{sprint.Date}}
     </option>
   </datalist>
 
-  <p><b>Issues Removed from sprint</b></p>
+  <h5 class="mt-5">Issues Removed from sprint</h5>
   <table mat-table [dataSource]="dataSource.data" class="mat-elevation-z8">
 
     <ng-container matColumnDef="position">
