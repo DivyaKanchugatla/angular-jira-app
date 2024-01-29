@@ -40,7 +40,7 @@ export class SprintReportsComponent implements OnInit {
   ngOnInit() {
     this.ticketService.projectTicketsArray$.subscribe((tickets) => {
       this.ticketsArray = tickets;
-         });
+    });
   }
 
   filterTickets() {
