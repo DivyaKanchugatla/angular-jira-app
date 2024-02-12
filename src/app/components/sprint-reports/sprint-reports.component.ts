@@ -13,7 +13,9 @@ import * as XLSX from 'xlsx';
 export class SprintReportsComponent implements OnInit {
   dataSource: Ticket[] = [];
   ticketsArray: Ticket[] = [];
-  selectedSprint = "";
+  selectedSprint: string = "Select the Sprint";
+
+
 
   sprints = [
     {
@@ -44,13 +46,13 @@ export class SprintReportsComponent implements OnInit {
   }
 
   filterTickets() {
-    const selectedSprintLowerCase = this.selectedSprint.toLowerCase();
-    if (selectedSprintLowerCase === " ") {
-      this.dataSource = this.ticketsArray
+    if (this.selectedSprint === "Select the Sprint") {
+      this.dataSource = this.ticketsArray;
     } else {
+      const selectedSprintLowerCase = this.selectedSprint.toLowerCase();
       this.dataSource = this.ticketsArray.filter((ticket) =>
         ticket.sprintReport.toLowerCase().includes(selectedSprintLowerCase)
-      )
+      );
     }
   }
 

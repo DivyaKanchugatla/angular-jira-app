@@ -1,12 +1,12 @@
 <div class="container">
-  <h4 class="mb-4">Sprint Report</h4>
-  <input list="id-sprint" [(ngModel)]="selectedSprint" (input)="onChange()">
-  <datalist id="id-sprint">
-    <option *ngFor="let sprint of sprints" [value]="sprint.name + ' - ' + sprint.Date">{{sprint.name}} - {{sprint.Date}}
-    </option>
-  </datalist>
-  <h5 class="mt-4">Issues Removed from sprint</h5>
-  <button class="btn btn-primary mb-3" (click)="exportexcel()">Download Excel File</button>
+  <h4 class="mb-0 pb-0">Sprint Report</h4>
+  <div style="float: left;">
+    <select style="width: 100%; padding:8px;" [(ngModel)]="selectedSprint" (click)="onChange()">
+      <option disabled>Select the Sprint</option>
+      <option *ngFor="let sprint of sprints" [value]="sprint.name + ' - ' + sprint.Date">{{sprint.name}} -
+        {{sprint.Date}}</option>
+    </select>
+  </div>
   <table class="table table-bordered" id="table-data">
     <thead>
       <tr>
@@ -29,4 +29,15 @@
       </tr>
     </tbody>
   </table>
+  <div class="d-flex justify-content-between align-items-center">
+    <button class="btn btn-primary mb-5" (click)="exportexcel()">Download Excel File</button>
+    <button class="btn btn-primary mb-5" routerLink="/board">Back to Board</button>
+  </div>
 </div>
+
+
+<!-- <input list="id-sprint" [(ngModel)]="selectedSprint" (input)="onChange()">
+  <datalist id="id-sprint">
+    <option *ngFor="let sprint of sprints" [value]="sprint.name + ' - ' + sprint.Date">{{sprint.name}} - {{sprint.Date}}
+    </option>
+  </datalist> -->
