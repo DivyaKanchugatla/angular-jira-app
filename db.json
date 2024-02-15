@@ -13,9 +13,6 @@
         "password": "@5678"
       }     
     ],    
-    "routes": {
-      "/projectList": "/projectList"
-    },
     "projectList": [
           {
             "projectId": 1,
