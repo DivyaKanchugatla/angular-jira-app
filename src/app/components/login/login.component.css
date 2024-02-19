@@ -1,4 +1,4 @@
-.main {
+ .main {
     background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsywOcE5UeYh_gsUzjadIEWRsigdc8-Od5og&usqp=CAU");
     height: 100vh;
     background-size: cover;
@@ -66,4 +66,32 @@
 
 .input-width-class {
     width: 80%;
+} 
+
+
+/* .mdc-card {
+    width: 30%;
+    padding: 50px;
+    background-color: white;
+
 }
+
+.mat-mdc-form-field {
+    width: 100%;
+} */
+
+/* div {
+    background-color: black;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+} */
+
+button {
+    width: 150px;
+    margin:5px auto;
+}
+
+

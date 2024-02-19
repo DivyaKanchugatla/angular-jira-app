@@ -5,13 +5,7 @@
         "emailId": "divya@gmail.com",
         "fullName": "Divya Kanchugatla",
         "password": "@1234" 
-      },
-      {
-        "userId": 2,
-        "emailId": "ganesh@gmail.com",
-        "fullName": "Ganesh Bade",
-        "password": "@5678"
-      }     
+      }  
     ],    
     "projectList": [
           {

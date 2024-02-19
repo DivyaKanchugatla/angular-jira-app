@@ -2,17 +2,26 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Ticket } from '../models/ticket.model';
 import { Project } from '../models/project.model';
+import { HttpClient } from '@angular/common/http';
+import { LoginUser } from '../models/loginUser.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TicketsService {
+  jsonServerUrl = 'http://localhost:3000/loginCreds';
   allTicketsArray: Ticket[] = [];
   searchInput = "";
   projectTicketsArraySource = new BehaviorSubject<Ticket[]>([]);
   projectTicketsArray$: Observable<Ticket[]> = this.projectTicketsArraySource.asObservable();
-
-  constructor() {
+  loginObj: LoginUser = {
+    "userId": 0,
+    "emailId": "",
+    "fullName": "",
+    "password": ""
+  }
+  constructor(private http: HttpClient, private router: Router) {
     const storedData = localStorage.getItem('allTicketsArray');
     this.allTicketsArray = storedData ? JSON.parse(storedData) : [];
     this.projectTicketsArraySource.next([...this.allTicketsArray]);
@@ -60,6 +69,27 @@ export class TicketsService {
         ticket.assignedTo === assignee)
       this.projectTicketsArraySource.next(filteredTickets);
     }
+  }
+
+
+  // getLoginCreds(): void {
+  //   return this.http.get<LoginUser[]>(`${this.jsonServerUrl}?emailId=${this.loginObj.emailId}&password=${this.loginObj.password}`)
+  //     .pipe(
+  //       map((res: LoginUser[]) => {
+  //         if (res.length > 0) {
+  //           const userData = res[0];
+  //           console.log("userData", userData)
+  //           localStorage.setItem('jiraLoginDetails', JSON.stringify(userData));
+  //           this.router.navigateByUrl('/board');
+  //         } else {
+  //           alert('Invalid credentials');
+  //         }
+  //         return res
+  //       })
+  //     );
+  // }
+  getLoginCreds(): Observable<LoginUser> {
+    return this.http.get<LoginUser>(`${this.jsonServerUrl}?emailId=${this.loginObj.emailId}&password=${this.loginObj.password}`);
   }
 
 }

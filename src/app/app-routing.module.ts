@@ -3,8 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { BoardComponent } from './components/board/board.component';
-import { UsersComponent } from './components/users/users.component';
-import { ProjectsComponent } from './components/projects/projects.component';
 import { EditTicketComponent } from './components/edit-ticket/edit-ticket.component';
 import { SprintReportsComponent } from './components/sprint-reports/sprint-reports.component';
 
@@ -19,21 +17,10 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'sprintReports',
-    component: SprintReportsComponent
-  },
-  {
     path: '',
     component: LayoutComponent,
     children: [
-      {
-        path: 'projects',
-        component: ProjectsComponent
-      },
-      {
-        path: 'users',
-        component: UsersComponent
-      },
+
       {
         path: 'board',
         component: BoardComponent
@@ -41,9 +28,13 @@ const routes: Routes = [
       {
         path: 'ticket',
         component: EditTicketComponent
-      }
+      },
     ]
-  }
+  },
+  {
+    path: 'sprintReports',
+    component: SprintReportsComponent
+  },
 ];
 
 @NgModule({

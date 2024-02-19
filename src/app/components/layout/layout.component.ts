@@ -8,6 +8,8 @@ import { Project } from 'src/app/models/project.model';
 import { User } from 'src/app/models/user.model';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-layout',
@@ -20,6 +22,8 @@ export class LayoutComponent implements OnInit {
   projectList: Project[] = [];
   status: string[] = ['To Do', 'In Progress', 'Done'];
   userList: User[] = [];
+  
+  private loginSubscription!: Subscription;
   sprints = [{
     name: 'MAR A',
     Date: "3/11/24"
@@ -79,10 +83,17 @@ export class LayoutComponent implements OnInit {
     this.getAllUsers();
     // Localization code
     this.lang = localStorage.getItem('lang') || 'en';
+    
   }
 
   filterTickets() {
     this.ticketsService.filterTickets(this.searchInput);
+  }
+  ngOnDestroy() {
+    // Unsubscribe to avoid memory leaks
+    if (this.loginSubscription) {
+      this.loginSubscription.unsubscribe();
+    }
   }
 
   getAllProjects() {
