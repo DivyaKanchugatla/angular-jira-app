@@ -21,6 +21,9 @@ import { loginEffects } from './shared/store/login/login.Effects';
 import { StoreModule } from '@ngrx/store';
 import { loginReducer } from './shared/store/login/login.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { layoutReducer } from './shared/store/layout/layout.reducer';
+
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -44,7 +47,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     NgbModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({login:loginReducer}),
+    StoreModule.forRoot({login:loginReducer,layout:layoutReducer}),
     MaterialModule,
     EffectsModule.forRoot([loginEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),

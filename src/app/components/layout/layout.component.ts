@@ -9,6 +9,9 @@ import { User } from 'src/app/models/user.model';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { createticket } from 'src/app/shared/store/layout/layout.actions';
+import { getticketsArray } from 'src/app/shared/store/layout/layout.selector';
 
 
 @Component({
@@ -54,7 +57,8 @@ export class LayoutComponent implements OnInit {
     private ticketsService: TicketsService,
     private modalService: NgbModal,
     private router: Router,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private store:Store
   ) {
     config.backdrop = 'static';
     config.keyboard = false;
@@ -70,10 +74,13 @@ export class LayoutComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ticketsService.projectTicketsArray$.subscribe((tickets) => {
-      this.ticketsArray = tickets;
+    // this.store.select(getticketsArray).subscribe((data)=>{
+    //   this.ticketsArray = data.ticketsArray
+    // })
 
-    });
+    // this.ticketsService.projectTicketsArray$.subscribe((tickets) => {
+    //   this.ticketsArray = tickets;
+    // });
     const storedProjectList = localStorage.getItem('projectList');
     if (storedProjectList) {
       this.projectList = JSON.parse(storedProjectList);
@@ -118,7 +125,9 @@ export class LayoutComponent implements OnInit {
       ...this.ticketObj,
       ticketId: Math.floor(Math.random() * 1000000) + 1,
     };
-    this.ticketsService.handleTickets(newTicketObj);
+    // this.ticketsService.handleTickets(newTicketObj);
+    this.store.dispatch(createticket({ticket:newTicketObj}))
+    // this.store.dispatch(gettickets())
   }
 
   // Localization

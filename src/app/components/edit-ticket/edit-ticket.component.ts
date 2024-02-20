@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Ticket } from 'src/app/models/ticket.model';
 import { Project } from 'src/app/models/project.model';
+import { getticketsArray } from 'src/app/shared/store/layout/layout.selector';
+import { Store } from '@ngrx/store';
+import { editticket } from 'src/app/shared/store/layout/layout.actions';
 
 @Component({
   selector: 'app-edit-ticket',
@@ -26,12 +29,15 @@ export class EditTicketComponent implements OnInit {
     name: 'MAR C',
     Date: "3/31/24"
   }];
-  constructor(private ticketsService: TicketsService, private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
+  constructor(private ticketsService: TicketsService, private route: ActivatedRoute, private router: Router, private http: HttpClient,private store:Store) { }
 
   ngOnInit() {
-    this.ticketsService.projectTicketsArray$.subscribe((tickets) => {
-      this.ticketsArray = tickets;
-    });
+    // this.ticketsService.projectTicketsArray$.subscribe((tickets) => {
+    //   this.ticketsArray = tickets;
+    // });
+    this.store.select(getticketsArray).subscribe((data)=>{
+      this.ticketsArray = data.ticketsArray
+    })
 
     this.route.queryParamMap.subscribe(params => {
       this.id = Number(params.get('id')) || 0;
@@ -62,7 +68,8 @@ export class EditTicketComponent implements OnInit {
     const newTicketArray = this.ticketsArray.map((ticket) => {
       return ticket.ticketId === this.selectedTicket.ticketId ? this.selectedTicket : ticket
     })
-    localStorage.setItem('allTicketsArray', JSON.stringify(newTicketArray));
+    // localStorage.setItem('allTicketsArray', JSON.stringify(newTicketArray));
+    this.store.dispatch(editticket({ticket:this.selectedTicket}))
     this.router.navigate(['/board']);
   }
 }
