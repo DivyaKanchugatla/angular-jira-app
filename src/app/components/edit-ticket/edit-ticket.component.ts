@@ -35,9 +35,13 @@ export class EditTicketComponent implements OnInit {
     // this.ticketsService.projectTicketsArray$.subscribe((tickets) => {
     //   this.ticketsArray = tickets;
     // });
-    this.store.select(getticketsArray).subscribe((data)=>{
-      this.ticketsArray = data.ticketsArray
-    })
+    // this.store.select(getticketsArray).subscribe((data)=>{
+    //   this.ticketsArray = data.ticketsArray
+    // })
+    const storedData = localStorage.getItem('layoutState');
+    const parsedData = storedData ? JSON.parse(storedData) : [];
+  console.log("storedData",parsedData)
+this.ticketsArray = parsedData;
 
     this.route.queryParamMap.subscribe(params => {
       this.id = Number(params.get('id')) || 0;
@@ -69,7 +73,9 @@ export class EditTicketComponent implements OnInit {
       return ticket.ticketId === this.selectedTicket.ticketId ? this.selectedTicket : ticket
     })
     // localStorage.setItem('allTicketsArray', JSON.stringify(newTicketArray));
-    this.store.dispatch(editticket({ticket:this.selectedTicket}))
+    localStorage.setItem("layoutState",JSON.stringify(newTicketArray))
+    
+    // this.store.dispatch(editticket({ticket:this.selectedTicket}))
     this.router.navigate(['/board']);
   }
 }
