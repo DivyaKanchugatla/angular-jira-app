@@ -10,7 +10,7 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { getticketsArray } from 'src/app/shared/store/layout/layout.selector';
+
 import { Store } from '@ngrx/store';
 
 
@@ -34,37 +34,20 @@ export class BoardComponent implements OnInit {
 
   constructor(private ticketService: TicketsService, public router: Router, private modalService: NgbModal,private store:Store) {
   }
- ngOnInit(){
-  // this.store.select(getticketsArray).subscribe((data)=>{
-  //   console.log("all tickets",data.ticketsArray)
-    
-  //   this.ticketsArray= data.ticketsArray
-    
-  //   this.ticketsArray.map(((each) => {
-  //     return this.assignees.push(each.assignedTo)
-  //    }))
-    
-  //   this.assignees = [...new Set(this.assignees)];
-  //   this.done = this.ticketsArray.filter((m) => m.status === 'Done');
-  //   this.todo = this.ticketsArray.filter((m) => m.status === 'To Do');
-  //   this.progress = this.ticketsArray.filter((m) => m.status === 'In Progress');
-  //   })
-  const storedData = localStorage.getItem('layoutState');
-    const parsedData = storedData ? JSON.parse(storedData) : [];
-  console.log("storedData",parsedData)
-this.ticketsArray = parsedData;
-console.log('Type of this.ticketService.allTicketsArray:', typeof this.ticketsArray);
-  this.ticketsArray.map(((each) => {
+ 
+ ngOnInit() {
+  this.ticketService.projectTicketsArray$.subscribe((tickets) => {
+    this.ticketsArray = tickets;
+    this.ticketsArray.map(((each) => {
       return this.assignees.push(each.assignedTo)
-     }))
-    
+    }))
     this.assignees = [...new Set(this.assignees)];
     this.done = this.ticketsArray.filter((m) => m.status === 'Done');
     this.todo = this.ticketsArray.filter((m) => m.status === 'To Do');
     this.progress = this.ticketsArray.filter((m) => m.status === 'In Progress');
-
- }
-  
+  });
+}
+ 
 
   getTasksByStatus(status: string): Ticket[] {
     switch (status) {
@@ -90,7 +73,7 @@ console.log('Type of this.ticketService.allTicketsArray:', typeof this.ticketsAr
   setEditItem(ticket: Ticket) {
     // this.setModal = "editModal"
     this.ticketToDelete = ticket;
-    console.log("ticketToDelete",this.ticketToDelete)
+    
   }
 
   setdeleteItem(ticket: Ticket) {
@@ -122,19 +105,14 @@ console.log('Type of this.ticketService.allTicketsArray:', typeof this.ticketsAr
   editTicket() {
     // Find the index of the ticket to be edited
     const index = this.ticketsArray.findIndex(ticket => ticket === this.ticketToDelete);
-  
     if (index !== -1) {
       // Navigate to the edit page
       this.router.navigate(['/ticket'], { queryParams: { id: this.ticketToDelete.ticketId } });
-  
       // Update the status of the ticket based on the current list
       const currentList = this.getContainingList(this.ticketToDelete);
       this.ticketsArray[index].status = currentList;
-      console.log("editticket array",this.ticketsArray)
-      
-      // Update local storage with the modified ticketsArray
-      // this.ticketService.updateLocalStorage(this.ticketsArray);
-      localStorage.setItem("layoutState",JSON.stringify(this.ticketsArray))
+      this.ticketService.updateLocalStorage(this.ticketsArray);
+      // localStorage.setItem("layoutState",JSON.stringify(this.ticketsArray))
     }
   }
   
@@ -160,76 +138,59 @@ console.log('Type of this.ticketService.allTicketsArray:', typeof this.ticketsAr
       );
     } else {
       const movedTicket = event.previousContainer.data[event.previousIndex];
-      // movedTicket.status = this.status[event.currentIndex];
-      const updatedTicket = { ...movedTicket, status: this.status[event.currentIndex] };      
-      this.ticketsArray = this.ticketsArray.map(item => (item === movedTicket) ? updatedTicket : item);    
-      // this.ticketService.updateLocalStorage(this.ticketsArray);   
+      movedTicket.status = this.status[event.currentIndex];
+      // const updatedTicket = { ...movedTicket, status: this.status[event.currentIndex] };      
+      // this.ticketsArray = this.ticketsArray.map(item => (item === movedTicket) ? updatedTicket : item);    
+      this.ticketService.updateLocalStorage(this.ticketsArray);   
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex
       );
-      localStorage.setItem("layoutState",JSON.stringify(this.ticketsArray))
+      // localStorage.setItem("layoutState",JSON.stringify(this.ticketsArray))
     }
   }
   
-// updateToLocalStorage(data:Ticket[]){
-//   localStorage.setItem('TicketsArray', JSON.stringify(data)); 
-// }
+
 }
 
 
 
-
-
-
-
-
-
-
-
-
-// ngOnInit() {
-  // this.ticketService.projectTicketsArray$.subscribe((tickets) => {
-  //   this.ticketsArray = tickets;
-  //   this.ticketsArray.map(((each) => {
-  //     return this.assignees.push(each.assignedTo)
-  //   }))
-  //   this.assignees = [...new Set(this.assignees)];
-  //   this.done = this.ticketsArray.filter((m) => m.status === 'Done');
-  //   this.todo = this.ticketsArray.filter((m) => m.status === 'To Do');
-  //   this.progress = this.ticketsArray.filter((m) => m.status === 'In Progress');
-  // });
+// ngOnInit(){
+//   const storedData = localStorage.getItem('layoutState');
+//   const parsedData = storedData ? JSON.parse(storedData) : [];
+//   console.log("storedData", parsedData)
   
-  
- 
-//     console.log('Type of this.ticketService.allTicketsArray:', typeof this.ticketService.allTicketsArray);
-// console.log('Content of this.ticketService.allTicketsArray:', this.ticketService.allTicketsArray);
-
-
-  // Assuming this.ticketService.allTicketsArray is an object with ticketsArray property
-// Assuming this.ticketService.allTicketsArray is an object with ticketsArray property
-// this.ticketsArray = this.ticketService.allTicketsArray;
-
-// if (Array.isArray(this.ticketsArray)) {
-//   // Use map only if this.ticketsArray is an array
-//   this.ticketsArray.map((each) => {
-//     return this.assignees.push(each.assignedTo);
-//   });
-// } else {
-//   console.error('this.ticketsArray is not an array.');
-// }
-// this.ticketsArray.map(((each) => {
-//       return this.assignees.push(each.assignedTo)
-//      }))
-
+//   this.ticketsArray = parsedData || [];
+//   this.ticketsArray.map(((each) => {
+//       return this.assignees.push(each.assignedTo);
+//   }));
+    
 //     this.assignees = [...new Set(this.assignees)];
 //     this.done = this.ticketsArray.filter((m) => m.status === 'Done');
 //     this.todo = this.ticketsArray.filter((m) => m.status === 'To Do');
 //     this.progress = this.ticketsArray.filter((m) => m.status === 'In Progress');
 
+//  }
 
 
 
-// }
+
+
+
+
+
+
+
+
+
+  
+ 
+
+
+  
+
+
+
+

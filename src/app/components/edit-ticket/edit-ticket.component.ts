@@ -32,16 +32,16 @@ export class EditTicketComponent implements OnInit {
   constructor(private ticketsService: TicketsService, private route: ActivatedRoute, private router: Router, private http: HttpClient,private store:Store) { }
 
   ngOnInit() {
-    // this.ticketsService.projectTicketsArray$.subscribe((tickets) => {
-    //   this.ticketsArray = tickets;
-    // });
+    this.ticketsService.projectTicketsArray$.subscribe((tickets) => {
+      this.ticketsArray = tickets;
+    });
     // this.store.select(getticketsArray).subscribe((data)=>{
     //   this.ticketsArray = data.ticketsArray
     // })
-    const storedData = localStorage.getItem('layoutState');
-    const parsedData = storedData ? JSON.parse(storedData) : [];
-  console.log("storedData",parsedData)
-this.ticketsArray = parsedData;
+//     const storedData = localStorage.getItem('layoutState');
+//     const parsedData = storedData ? JSON.parse(storedData) : [];
+//   console.log("storedData",parsedData)
+// this.ticketsArray = parsedData;
 
     this.route.queryParamMap.subscribe(params => {
       this.id = Number(params.get('id')) || 0;
@@ -72,10 +72,10 @@ this.ticketsArray = parsedData;
     const newTicketArray = this.ticketsArray.map((ticket) => {
       return ticket.ticketId === this.selectedTicket.ticketId ? this.selectedTicket : ticket
     })
-    // localStorage.setItem('allTicketsArray', JSON.stringify(newTicketArray));
-    localStorage.setItem("layoutState",JSON.stringify(newTicketArray))
+    localStorage.setItem('allTicketsArray', JSON.stringify(newTicketArray));
+    // localStorage.setItem("layoutState",JSON.stringify(newTicketArray))
     
-    // this.store.dispatch(editticket({ticket:this.selectedTicket}))
+    // this.store.dispatch(editticket({tickets:newTicketArray}))
     this.router.navigate(['/board']);
   }
 }

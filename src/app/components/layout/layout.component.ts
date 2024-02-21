@@ -78,9 +78,9 @@ export class LayoutComponent implements OnInit {
     //   this.ticketsArray = data.ticketsArray
     // })
 
-    // this.ticketsService.projectTicketsArray$.subscribe((tickets) => {
-    //   this.ticketsArray = tickets;
-    // });
+    this.ticketsService.projectTicketsArray$.subscribe((tickets) => {
+      this.ticketsArray = tickets;
+    });
     const storedProjectList = localStorage.getItem('projectList');
     if (storedProjectList) {
       this.projectList = JSON.parse(storedProjectList);
@@ -125,8 +125,8 @@ export class LayoutComponent implements OnInit {
       ...this.ticketObj,
       ticketId: Math.floor(Math.random() * 1000000) + 1,
     };
-    // this.ticketsService.handleTickets(newTicketObj);
-    this.store.dispatch(createticket({ticket:newTicketObj}))
+    this.ticketsService.handleTickets(newTicketObj);
+    // this.store.dispatch(createticket({ticket:newTicketObj}))
     // this.store.dispatch(gettickets())
   }
 
