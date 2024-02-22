@@ -4,15 +4,8 @@ import { Router } from '@angular/router';
 import { Ticket } from 'src/app/models/ticket.model';
 import { Project } from 'src/app/models/project.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
-import {
-  CdkDragDrop,
-  moveItemInArray,
-  transferArrayItem,
-} from '@angular/cdk/drag-drop';
-
+import { CdkDragDrop,moveItemInArray,transferArrayItem} from '@angular/cdk/drag-drop';
 import { Store } from '@ngrx/store';
-
 
 @Component({
   selector: 'app-board',
@@ -48,7 +41,6 @@ export class BoardComponent implements OnInit {
   });
 }
  
-
   getTasksByStatus(status: string): Ticket[] {
     switch (status) {
       case 'To Do':
@@ -72,8 +64,7 @@ export class BoardComponent implements OnInit {
 
   setEditItem(ticket: Ticket) {
     // this.setModal = "editModal"
-    this.ticketToDelete = ticket;
-    
+    this.ticketToDelete = ticket; 
   }
 
   setdeleteItem(ticket: Ticket) {
@@ -128,7 +119,6 @@ export class BoardComponent implements OnInit {
     }
   }
   
-
   drop(event: CdkDragDrop<Ticket[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
@@ -151,8 +141,6 @@ export class BoardComponent implements OnInit {
       // localStorage.setItem("layoutState",JSON.stringify(this.ticketsArray))
     }
   }
-  
-
 }
 
 
@@ -161,36 +149,12 @@ export class BoardComponent implements OnInit {
 //   const storedData = localStorage.getItem('layoutState');
 //   const parsedData = storedData ? JSON.parse(storedData) : [];
 //   console.log("storedData", parsedData)
-  
 //   this.ticketsArray = parsedData || [];
 //   this.ticketsArray.map(((each) => {
 //       return this.assignees.push(each.assignedTo);
 //   }));
-    
 //     this.assignees = [...new Set(this.assignees)];
 //     this.done = this.ticketsArray.filter((m) => m.status === 'Done');
 //     this.todo = this.ticketsArray.filter((m) => m.status === 'To Do');
 //     this.progress = this.ticketsArray.filter((m) => m.status === 'In Progress');
-
 //  }
-
-
-
-
-
-
-
-
-
-
-
-
-  
- 
-
-
-  
-
-
-
-

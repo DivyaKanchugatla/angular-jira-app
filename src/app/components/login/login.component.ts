@@ -19,7 +19,9 @@ export class LoginComponent {
     "password": ""
   }
   loginSubscription!: Subscription;
+  
   constructor(private store: Store,private router:Router) { }
+
   ngOnDestroy() {
     if (this.loginSubscription) {
       this.loginSubscription.unsubscribe();
@@ -31,7 +33,6 @@ export class LoginComponent {
     this.store.select(getLoginCreds).subscribe((data) => {
       localStorage.setItem('jiraLoginDetails', JSON.stringify(data));
       this.router.navigateByUrl('/board');
-    });
-    
+    });  
   }
 }

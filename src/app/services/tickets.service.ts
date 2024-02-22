@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
+
 export class TicketsService {
   jsonServerUrl = 'http://localhost:3000/loginCreds';
   allTicketsArray: Ticket[] = [];
@@ -21,6 +22,7 @@ export class TicketsService {
     "fullName": "",
     "password": ""
   }
+
   constructor(private http: HttpClient, private router: Router) {
     const storedData = localStorage.getItem('allTicketsArray');
     this.allTicketsArray = storedData ? JSON.parse(storedData) : [];
@@ -44,6 +46,7 @@ export class TicketsService {
   updateLocalStorage(tickets: Ticket[]) {
     localStorage.setItem('allTicketsArray', JSON.stringify(tickets));
   }
+
   filterTickets(search: string) {
     this.searchInput = search;
     if (this.searchInput.trim() === '') {
@@ -70,8 +73,6 @@ export class TicketsService {
       this.projectTicketsArraySource.next(filteredTickets);
     }
   }
-
-
   // getLoginCreds(): void {
   //   return this.http.get<LoginUser[]>(`${this.jsonServerUrl}?emailId=${this.loginObj.emailId}&password=${this.loginObj.password}`)
   //     .pipe(

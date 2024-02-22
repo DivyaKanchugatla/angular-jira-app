@@ -4,9 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Ticket } from 'src/app/models/ticket.model';
 import { Project } from 'src/app/models/project.model';
-import { getticketsArray } from 'src/app/shared/store/layout/layout.selector';
 import { Store } from '@ngrx/store';
-import { editticket } from 'src/app/shared/store/layout/layout.actions';
 
 @Component({
   selector: 'app-edit-ticket',
@@ -42,7 +40,6 @@ export class EditTicketComponent implements OnInit {
 //     const parsedData = storedData ? JSON.parse(storedData) : [];
 //   console.log("storedData",parsedData)
 // this.ticketsArray = parsedData;
-
     this.route.queryParamMap.subscribe(params => {
       this.id = Number(params.get('id')) || 0;
       const filteredTickets = this.ticketsArray.filter(m => m.ticketId == this.id);
@@ -52,7 +49,6 @@ export class EditTicketComponent implements OnInit {
         console.error("Ticket not found with id: ", this.id);
       }
     });
-
     const storedProjectList = localStorage.getItem('projectList');
     if (storedProjectList) {
       this.projectList = JSON.parse(storedProjectList);
@@ -73,8 +69,7 @@ export class EditTicketComponent implements OnInit {
       return ticket.ticketId === this.selectedTicket.ticketId ? this.selectedTicket : ticket
     })
     localStorage.setItem('allTicketsArray', JSON.stringify(newTicketArray));
-    // localStorage.setItem("layoutState",JSON.stringify(newTicketArray))
-    
+    // localStorage.setItem("layoutState",JSON.stringify(newTicketArray)) 
     // this.store.dispatch(editticket({tickets:newTicketArray}))
     this.router.navigate(['/board']);
   }

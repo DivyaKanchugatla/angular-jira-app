@@ -10,9 +10,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { createticket } from 'src/app/shared/store/layout/layout.actions';
-import { getticketsArray } from 'src/app/shared/store/layout/layout.selector';
-
 
 @Component({
   selector: 'app-layout',
@@ -77,7 +74,6 @@ export class LayoutComponent implements OnInit {
     // this.store.select(getticketsArray).subscribe((data)=>{
     //   this.ticketsArray = data.ticketsArray
     // })
-
     this.ticketsService.projectTicketsArray$.subscribe((tickets) => {
       this.ticketsArray = tickets;
     });
@@ -89,13 +85,13 @@ export class LayoutComponent implements OnInit {
     }
     this.getAllUsers();
     // Localization code
-    this.lang = localStorage.getItem('lang') || 'en';
-    
+    this.lang = localStorage.getItem('lang') || 'en';  
   }
 
   filterTickets() {
     this.ticketsService.filterTickets(this.searchInput);
   }
+
   ngOnDestroy() {
     // Unsubscribe to avoid memory leaks
     if (this.loginSubscription) {
@@ -138,6 +134,7 @@ export class LayoutComponent implements OnInit {
     // page Refresh
     this.translateService.use(selectedLang);
   }
+
   sprintReports() {
     this.router.navigate(['/sprintReports'])
   }

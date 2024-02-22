@@ -15,8 +15,6 @@ export class SprintReportsComponent implements OnInit {
   ticketsArray: Ticket[] = [];
   selectedSprint: string = "Select the Sprint";
 
-
-
   sprints = [
     {
       name: 'MAR A',
@@ -64,5 +62,4 @@ export class SprintReportsComponent implements OnInit {
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1')
     XLSX.writeFile(wb, this.fileName)
   }
-
 }
