@@ -23,8 +23,6 @@ import { loginReducer } from './shared/store/login/login.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { layoutReducer } from './shared/store/layout/layout.reducer';
 
-
-
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
