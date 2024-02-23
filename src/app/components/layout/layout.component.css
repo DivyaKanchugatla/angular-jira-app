@@ -122,3 +122,11 @@
 .reports {
   cursor: pointer;
 }
+
+.user-name {
+  background-color: white;
+  color:black;
+  margin: 10px;
+  padding: 7px;
+  border-radius: 5px;
+}

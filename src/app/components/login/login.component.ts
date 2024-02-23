@@ -31,7 +31,7 @@ export class LoginComponent {
   onLogin() {
     this.store.dispatch(loadlogin({loginObj:this.loginObj}));
     this.store.select(getLoginCreds).subscribe((data) => {
-      localStorage.setItem('jiraLoginDetails', JSON.stringify(data));
+      // localStorage.setItem('jiraLoginDetails', JSON.stringify(data));
       this.router.navigateByUrl('/board');
     });  
   }

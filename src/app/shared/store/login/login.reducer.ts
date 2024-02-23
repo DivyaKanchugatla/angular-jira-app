@@ -13,6 +13,7 @@ const _loginReducer = createReducer(loginState, on(loadlogin, (state, action) =>
     }
 }),
     on(loadloginsuccess, (state, action) => {
+        localStorage.setItem('jiraLoginDetails', JSON.stringify(action.logincreds));
         return {
             ...action.logincreds
         }

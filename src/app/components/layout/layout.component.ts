@@ -34,6 +34,7 @@ export class LayoutComponent implements OnInit {
     name: 'MAR C',
     Date: "3/31/24"
   }];
+  fullName:string = "";
   ticketObj: Ticket = {
     projectName: '',
     ticketType: '',
@@ -62,6 +63,9 @@ export class LayoutComponent implements OnInit {
     const loginData = localStorage.getItem('jiraLoginDetails');
     if (loginData != null) {
       const parseData = JSON.parse(loginData);
+      console.log("parseData",parseData)
+      this.fullName = parseData[0]?.fullName
+      console.log("fullname",parseData.fullName)
       this.ticketObj.createdBy = parseData.fullName;
     }
   }
