@@ -6,6 +6,8 @@ import { Project } from 'src/app/models/project.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CdkDragDrop,moveItemInArray,transferArrayItem} from '@angular/cdk/drag-drop';
 import { Store } from '@ngrx/store';
+import { getData } from 'src/app/shared/store/layout/layout.actions';
+import { getLayoutState } from 'src/app/shared/store/layout/layout.selector';
 
 @Component({
   selector: 'app-board',
@@ -19,26 +21,56 @@ export class BoardComponent implements OnInit {
   progress: Ticket[] = [];
   done: Ticket[] = [];
   projectList: Project[] = [];
-  ticketsArray: Ticket[] = [];
+  ticketsArray: any[] = [];
   status: string[] = ['To Do', 'In Progress', 'Done'];
   ticketToDelete!: Ticket;
   setModal = ""
   assignees: string[] = []
 
+
+  data$ = this.store.select(getLayoutState);
+  
+
   constructor(private ticketService: TicketsService, public router: Router, private modalService: NgbModal,private store:Store) {
   }
  
  ngOnInit() {
-  this.ticketService.projectTicketsArray$.subscribe((tickets) => {
-    this.ticketsArray = tickets;
-    this.ticketsArray.map(((each) => {
-      return this.assignees.push(each.assignedTo)
-    }))
-    this.assignees = [...new Set(this.assignees)];
+  this.store.dispatch(getData({ data: JSON.parse(localStorage.getItem('layoutState') || '[]') }));
+  this.data$.subscribe((data)=>{
+    this.ticketsArray = data.ticketsArray
+    console.log("data",this.ticketsArray)
+     this.ticketsArray.map(((each) => {
+      return this.assignees.push(each.assignedTo);
+     }));
+     this.assignees = [...new Set(this.assignees)];
     this.done = this.ticketsArray.filter((m) => m.status === 'Done');
     this.todo = this.ticketsArray.filter((m) => m.status === 'To Do');
     this.progress = this.ticketsArray.filter((m) => m.status === 'In Progress');
   });
+  // this.ticketService.projectTicketsArray$.subscribe((tickets) => {
+  //   this.ticketsArray = tickets;
+  //   this.ticketsArray.map(((each) => {
+  //     return this.assignees.push(each.assignedTo)
+  //   }))
+  //   this.assignees = [...new Set(this.assignees)];
+  //   this.done = this.ticketsArray.filter((m) => m.status === 'Done');
+  //   this.todo = this.ticketsArray.filter((m) => m.status === 'To Do');
+  //   this.progress = this.ticketsArray.filter((m) => m.status === 'In Progress');
+  // });
+
+  // const storedData = localStorage.getItem('layoutState');
+  // const parsedData = storedData ? JSON.parse(storedData) : { ticketsArray: [] };
+  // console.log("storedData", parsedData);
+
+  // this.ticketsArray = parsedData.ticketsArray || [];
+  // this.ticketsArray.map(((each) => {
+  //     return this.assignees.push(each.assignedTo);
+  // }));
+  // this.assignees = [...new Set(this.assignees)];
+  // this.done = this.ticketsArray.filter((m) => m.status === 'Done');
+  // this.todo = this.ticketsArray.filter((m) => m.status === 'To Do');
+  // this.progress = this.ticketsArray.filter((m) => m.status === 'In Progress');
+  
 }
  
   getTasksByStatus(status: string): Ticket[] {
@@ -128,17 +160,17 @@ export class BoardComponent implements OnInit {
       );
     } else {
       const movedTicket = event.previousContainer.data[event.previousIndex];
-      movedTicket.status = this.status[event.currentIndex];
-      // const updatedTicket = { ...movedTicket, status: this.status[event.currentIndex] };      
-      // this.ticketsArray = this.ticketsArray.map(item => (item === movedTicket) ? updatedTicket : item);    
-      this.ticketService.updateLocalStorage(this.ticketsArray);   
+      // movedTicket.status = this.status[event.currentIndex];
+      const updatedTicket = { ...movedTicket, status: this.status[event.currentIndex] };      
+      this.ticketsArray = this.ticketsArray.map(item => (item === movedTicket) ? updatedTicket : item);    
+      // this.ticketService.updateLocalStorage(this.ticketsArray);   
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex
       );
-      // localStorage.setItem("layoutState",JSON.stringify(this.ticketsArray))
+      localStorage.setItem("layoutState",JSON.stringify(this.ticketsArray))
     }
   }
 }

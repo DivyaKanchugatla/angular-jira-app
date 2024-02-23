@@ -1,28 +1,42 @@
 import { createReducer, on, Action } from "@ngrx/store";
-import { createticket, editticket } from "./layout.actions";
-import { initialLayoutState } from "./layout.state";
+import { createticket, editticket,getData } from "./layout.actions";
+import { AppState } from "./layout.state";
+
+const stored = JSON.parse(localStorage.getItem('layoutState') || '[]') || [];
+export const initialLayoutState: AppState = {
+  ticketsArray: stored
+}
 
 const _layoutReducer = createReducer(
   initialLayoutState,
 
-  on(createticket, (state, action) => {
-    const updatedTicketsArray = [...state.ticketsArray, action.ticket];
-
-    const updatedState = {
+  on(createticket, (state, {projectName,assignedTo,priority,storyPoints,sprintReport,status,summary,ticketId,ticketType,createdDate,createdBy}) => {
+    const updatedTicketsArray = {
       ...state,
-      ticketsArray: updatedTicketsArray,
-    };
+      ticketsArray:[...state.ticketsArray,{projectName,assignedTo,priority,storyPoints,sprintReport,status,summary,ticketId,ticketType,createdDate,createdBy}]
+    }
+  
+    // Update localStorage with the updated array
+    localStorage.setItem("layoutState", JSON.stringify(updatedTicketsArray.ticketsArray));
+  
+    // Return the updated state with the new ticket appended
+    return {...state,ticketsArray:updatedTicketsArray.ticketsArray}
+  }),
+  
 
-    localStorage.setItem("layoutState", JSON.stringify(updatedState));
-    return updatedState;
+  on(getData, (state, { data }) => {
+    return { ...state, ticketsArray: data };
   }),
 
+
+  
   on(editticket, (state, action) => {
+    localStorage.setItem("layoutState",JSON.stringify(action.tickets))
     return {
       ...state,
       ticketsArray:action.tickets
     }
-  })
+  }),
 );
 
 export function layoutReducer(state: any, action: Action) {

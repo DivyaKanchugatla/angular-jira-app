@@ -10,6 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { createticket } from 'src/app/shared/store/layout/layout.actions';
 
 @Component({
   selector: 'app-layout',
@@ -126,7 +127,7 @@ export class LayoutComponent implements OnInit {
       ticketId: Math.floor(Math.random() * 1000000) + 1,
     };
     this.ticketsService.handleTickets(newTicketObj);
-    // this.store.dispatch(createticket({ticket:newTicketObj}))
+    this.store.dispatch(createticket(newTicketObj))
     // this.store.dispatch(gettickets())
   }
 
